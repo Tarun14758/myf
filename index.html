@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DYF - Make You Better</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f9fb;
+      color: #333;
+    }
+
+    header {
+      background: #0d1b2a;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      animation: fadeInDown 1s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      display: block;
+      margin: 0 auto 10px;
+      animation: bounce 0.7s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #ffcc70;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 10px 0 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: #80deea;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffd166;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      color: #007c91;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    section p {
+      font-size: 1rem;
+      line-height: 1.8;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .mission-image{
+      width: 600px;
+      max-height: 150px;
+      object-fit: cover;
+      display: block;
+      margin: 25px auto;
+      border-radius: 12px;
+    }
+
+    .highlight-image {
+      width: 750px;
+      max-height: 300px;
+      object-fit: cover;
+      display: block;
+      margin: 25px auto;
+      border-radius: 12px;
+    }
+
+    .mission-quote {
+      font-size: 18px;
+      color: #6a1b9a;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .big-button {
+      display: inline-block;
+      background-color: #007c91;
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      margin-top: 25px;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .big-button:hover {
+      background-color: #005f6a;
+      transform: translateY(-3px);
+    }
+
+    .subjects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .subject {
+      text-align: center;
+      flex: 1 1 30%;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .subject:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .subject img {
+      width: 100%;
+      max-width: 200px;
+      max-height: 140px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+
+    .subject p {
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+
+    .coming-soon {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 160%;
+      font-weight: bold;
+      color: #051214;
+    }
+
+    footer {
+      background: #0d1b2a;  
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .subjects {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        display: block;
+        margin: 10px 0;
+      }
+
+      .mission-image, .highlight-image {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\NEW DEMO INSTAGRAM\PHOTOS\logo.png" alt="DYF Logo" class="logo">
+    <h1>MYF - Make You Better</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#streams">Streams</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="mission">
+      <h2>Our Mission</h2>
+      <img class="mission-image" src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\NEW DEMO INSTAGRAM\PHOTOS\vision1.jpg" alt="Students learning">
+      <p>Empowering Students for a Brighter Future</p>
+      <p>At MYF - Make You Better, we guide students toward a successful future through mentorship, roadmaps, and stress-free career decisions. Whether in science, arts, or commerce, we provide structured plans and inspiring support for every student's journey.</p>
+      <p>Let us help students unlock their potential with clarity, motivation, and the right direction.</p>
+      <img class="highlight-image" src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\NEW DEMO INSTAGRAM\PHOTOS\confuse.jpg" alt="Bright future">
+      <div class="mission-quote">
+        “At MYF, we replace confusion with confidence and build futures where every student shines.”
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/3456/3456426.png" alt="Why DYF" style="width: 60px; height: auto; margin-bottom: 15px;">
+        <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto; color: #444; font-weight: 500;">
+          Why did we create MYF? Because we know students often feel lost after 10th grade. DYF is here to light the path.
+        </p>
+        <p style="font-size: 1.1rem; max-width: 800px; margin: 15px auto; color: #444;">
+          Our website helps you compare <strong>government and private college fees</strong>, explore <strong>expected salaries</strong> in each stream, and even gives you a <strong>salary projection</strong> based on your chosen path.
+        </p>
+        <p style="font-size: 1.1rem; max-width: 800px; margin: 15px auto; color: #444;">
+          Your decision is yours — but we help you make it smarter. MYF helps you shine brighter, with clarity on your future.
+        </p>
+      </div>
+    </section>
+
+    <section id="job-options">
+      <h2>Options After 10th Class</h2>
+      <p>Explore career opportunities after 10th:</p>
+      <div style="text-align:center;">
+        <a href="10firstpage.html" class="big-button">Explore After 10th Options</a>
+      </div>
+    </section>
+
+    <!-- New Tools Section -->
+    <section id="tools">
+      <h2>Try Our Tools</h2>
+      <p>Interactive features to help you plan your future:</p>
+      <div style="text-align:center; margin-top: 20px;">
+        <a href="#" class="big-button">💰 Budget Calculator</a>
+        <a href="#" class="big-button" style=" margin-left: 15px;">🤖 AI Coming Soon</a>
+      </div>
+    </section>
+
+    <section id="streams">
+      <div class="coming-soon"><strong>✨ All these features are coming soon!</strong></div>
+      <br>
+      <h2>Available Streams</h2>
+      <div class="subjects">
+        <div class="subject">
+          <img src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\NEW DEMO INSTAGRAM\PHOTOS\question mark.avif" alt="Science Stream">
+          <p>Science</p>
+        </div>
+        <div class="subject">
+          <img src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\NEW DEMO INSTAGRAM\PHOTOS\question mark.avif" alt="Arts Stream">
+          <p>Arts</p>
+        </div>
+        <div class="subject">
+          <img src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\NEW DEMO INSTAGRAM\PHOTOS\question mark.avif" alt="Commerce Stream">
+          <p>Commerce</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>
+    <p>&copy; 2025 DYF - Make You Better. All rights reserved.</p>
+    </strong>
+  </footer>
+
+</body>
+</html>
