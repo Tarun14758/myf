@@ -139,11 +139,10 @@
   <div id="myf_toast" role="status" aria-live="polite"></div>
 
   <!-- GOOGLE-ONLY AUTH SCRIPT (dynamic import with graceful fallback) -->
-  <!-- GOOGLE-ONLY AUTH SCRIPT (dynamic import with graceful fallback) -->
-<script type="module">
+  <script type="module">
 /*
   Auth module — popup-first with automatic redirect fallback when popup is blocked.
-  Updated to load firebase-config.js from repo root (not ./common/).
+  Uses ./firebase-config.js from repo root (which exports `auth` in your config).
 */
 (async () => {
   // UI elements
@@ -172,32 +171,27 @@
       // Load your config file from repo root (not ./common/)
       const cfg = await import('./firebase-config.js');
 
-      // Case A: firebase-config.js already exports an initialized `auth` (best)
+      // If the config file exports `auth` (your case), use it:
       if (cfg && cfg.auth) {
         auth = cfg.auth;
-        // we still import the auth module to get helper functions / provider class
+        // import auth helpers/provider
         fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
         firebaseOk = true;
         return true;
       }
 
-      // Case B: firebase-config.js exports `firebaseConfig` object (client config)
-      if (cfg && (cfg.firebaseConfig || cfg.default && cfg.default.firebaseConfig)) {
+      // If the config exports firebaseConfig object, initialize here (fallback)
+      if (cfg && (cfg.firebaseConfig || (cfg.default && cfg.default.firebaseConfig))) {
         const firebaseConfig = cfg.firebaseConfig || (cfg.default && cfg.default.firebaseConfig);
-
-        // import modular SDK app + auth
         const appModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js');
         fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
-
-        // initialize app and auth
         const app = appModule.initializeApp(firebaseConfig);
         auth = fbAuthModule.getAuth(app);
-
         firebaseOk = true;
         return true;
       }
 
-      // Case C: config file may have created globals (legacy). Try to use them.
+      // Fallback: maybe global firebase loaded (legacy)
       if (window.firebase && window.firebase.auth) {
         auth = window.firebase.auth();
         fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
@@ -205,8 +199,7 @@
         return true;
       }
 
-      // If none of the above, fail with helpful message
-      console.error('Firebase config found but neither `auth` nor `firebaseConfig` was exported. Check ./firebase-config.js');
+      console.error('Firebase config found but no usable export (`auth` or `firebaseConfig`). Check ./firebase-config.js');
       return false;
     } catch (err) {
       console.error('Auth load failed (looking for ./firebase-config.js or failing to import SDK):', err);
@@ -244,12 +237,12 @@
     try {
       // Prefer popup for quick UX
       await fbAuthModule.signInWithPopup(auth, new fbAuthModule.GoogleAuthProvider());
-      // onAuthStateChanged handles UI update + return navigation if needed
+      // onAuthStateChanged will update UI
     } catch (err) {
       console.warn('Popup sign-in error', err);
       const code = (err && (err.code || '')).toString();
       if(code.includes('popup-blocked') || code.includes('popup_closed_by_user') || code.includes('auth/popup-blocked') || code.includes('auth/popup-closed-by-user')){
-        // fallback: redirect flow (works when popup blocked)
+        // fallback: redirect
         try {
           await fbAuthModule.signInWithRedirect(auth, new fbAuthModule.GoogleAuthProvider());
         } catch (redirErr) {
@@ -322,13 +315,11 @@
             try { if(window.gtag && user && user.uid) window.gtag('set', {'user_id': user.uid}); } catch(e){/*ignore*/ }
           });
         } else if (auth && typeof auth.onAuthStateChanged === 'function') {
-          // Some builds expose it on auth
           auth.onAuthStateChanged(user => {
             renderHeader(user);
             try { if(window.gtag && user && user.uid) window.gtag('set', {'user_id': user.uid}); } catch(e){/*ignore*/ }
           });
         } else {
-          // fallback: just render no-user state
           renderHeader(null);
         }
       } catch(e){
@@ -345,7 +336,6 @@
 
 })();
 </script>
-
 
 </body>
 </html>
