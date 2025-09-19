@@ -4,231 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DYF - Make You Better</title>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B61TT6VQJ6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-B61TT6VQJ6');
-</script>
+  <!-- Google Analytics (gtag) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B61TT6VQJ6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B61TT6VQJ6');
+  </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f4f9fb;
-      color: #333;
-    }
-
-    header {
-      background: #0d1b2a;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-      animation: fadeInDown 1s ease;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .logo {
-      width: 150px;
-      height: 150px;
-      display: block;
-      margin: 0 auto 10px;
-      animation: bounce 0.7s infinite alternate;
-    }
-
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to { transform: translateY(-5px); }
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      color: #ffcc70;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 10px 0 0;
-    }
-
-    nav ul li {
-      display: inline-block;
-      margin: 0 15px;
-    }
-
-    nav ul li a {
-      color: #80deea;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      color: #ffd166;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    section {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 40px 30px;
-      margin-bottom: 40px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-
-    section h2 {
-      font-size: 1.8rem;
-      color: #007c91;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    section p {
-      font-size: 1rem;
-      line-height: 1.8;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 20px;
-    }
-
-    .mission-image{
-      width: 600px;
-      max-height: 150px;
-      object-fit: cover;
-      display: block;
-      margin: 25px auto;
-      border-radius: 12px;
-    }
-
-    .highlight-image {
-      width: 750px;
-      max-height: 300px;
-      object-fit: cover;
-      display: block;
-      margin: 25px auto;
-      border-radius: 12px;
-    }
-
-    .mission-quote {
-      font-size: 18px;
-      color: #6a1b9a;
-      font-weight: bold;
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .big-button {
-      display: inline-block;
-      background-color: #007c91;
-      color: #fff;
-      padding: 14px 32px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      margin-top: 25px;
-      transition: background-color 0.3s, transform 0.2s;
-      text-decoration: none;
-    }
-
-    .big-button:hover {
-      background-color: #005f6a;
-      transform: translateY(-3px);
-    }
-
-    .subjects {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 20px;
-    }
-
-    .subject {
-      text-align: center;
-      flex: 1 1 30%;
-      background-color: #f9f9f9;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .subject:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .subject img {
-      width: 100%;
-      max-width: 200px;
-      max-height: 140px;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border-radius: 10px;
-    }
-
-    .subject p {
-      font-weight: bold;
-      font-size: 1.05rem;
-    }
-
-    .coming-soon {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 160%;
-      font-weight: bold;
-      color: #051214;
-    }
-
-    footer {
-      background: #0d1b2a;  
-      color: #fff;
-      text-align: center;
-      padding: 20px 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: #f4f9fb; color: #333; }
+    header { background: #0d1b2a; color: #fff; padding: 40px 20px; text-align: center; animation: fadeInDown 1s ease; position:relative; }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    .logo { width: 150px; height: 150px; display: block; margin: 0 auto 10px; animation: bounce 0.7s infinite alternate; }
+    @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; color: #ffcc70; }
+    nav ul { list-style: none; padding: 10px 0 0; }
+    nav ul li { display: inline-block; margin: 0 15px; }
+    nav ul li a { color: #80deea; font-weight: 600; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
+    nav ul li a:hover { color: #ffd166; }
+    main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    section { background: #ffffff; border-radius: 12px; padding: 40px 30px; margin-bottom: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); }
+    section h2 { font-size: 1.8rem; color: #007c91; margin-bottom: 20px; text-align: center; }
+    section p { font-size: 1rem; line-height: 1.8; text-align: center; max-width: 800px; margin: 0 auto 20px; }
+    .mission-image{ width: 600px; max-height: 150px; object-fit: cover; display: block; margin: 25px auto; border-radius: 12px; }
+    .highlight-image { width: 750px; max-height: 300px; object-fit: cover; display: block; margin: 25px auto; border-radius: 12px; }
+    .mission-quote { font-size: 18px; color: #6a1b9a; font-weight: bold; text-align: center; margin-top: 30px; }
+    .big-button { display: inline-block; background-color: #007c91; color: #fff; padding: 14px 32px; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 50px; margin-top: 25px; transition: background-color 0.3s, transform 0.2s; text-decoration: none; cursor: pointer; }
+    .big-button:hover { background-color: #005f6a; transform: translateY(-3px); }
+    .subjects { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; }
+    .subject { text-align: center; flex: 1 1 30%; background-color: #f9f9f9; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; }
+    .subject:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
+    .subject img { width: 100%; max-width: 200px; max-height: 140px; object-fit: cover; margin-bottom: 15px; border-radius: 10px; }
+    .subject p { font-weight: bold; font-size: 1.05rem; }
+    .coming-soon { margin-top: 40px; text-align: center; font-size: 160%; font-weight: bold; color: #051214; }
+    footer { background: #0d1b2a; color: #fff; text-align: center; padding: 20px 0; }
     @media (max-width: 768px) {
-      .subjects {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      nav ul li {
-        display: block;
-        margin: 10px 0;
-      }
-
-      .mission-image, .highlight-image {
-        width: 90%;
-      }
+      .subjects { flex-direction: column; align-items: center; }
+      nav ul li { display: block; margin: 10px 0; }
+      .mission-image, .highlight-image { width: 90%; }
     }
+
+    /* --- Auth UI in header --- */
+    #authContainer { position: absolute; right: 18px; top: 18px; display:flex; gap:10px; align-items:center; z-index:2000; }
+    .auth-btn { background: #ffcc70; color: #0d1b2a; padding: 10px 14px; border-radius: 30px; border: none; font-weight: 700; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .auth-user { color:#fff; background:transparent; font-weight:700; padding:6px 10px; border-radius:20px; border:1px solid rgba(255,255,255,0.12) }
+    .auth-logout { background:#e5533d; color:#fff; padding:8px 10px; border-radius:12px; border:none; font-weight:700; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+    /* toast */
+    #myf_toast { position: fixed; right: 18px; bottom: 18px; background:#111; color:#fff; padding:10px 14px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.2); z-index:1600; opacity:0; transition: opacity .22s ease; }
+    #myf_toast.show { opacity: 1; }
+
   </style>
 </head>
 <body>
@@ -236,6 +66,12 @@
   <header>
     <img src="logo.png" alt="DYF Logo" class="logo">
     <h1>MYF - Make You Better</h1>
+
+    <!-- Auth container: populated dynamically (initial content shown immediately so user always sees a button) -->
+    <div id="authContainer" aria-live="polite">
+      <button id="googleSignBtn_static" class="auth-btn">Sign in with Google</button>
+    </div>
+
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
@@ -253,38 +89,23 @@
       <p>At MYF - Make You Better, we guide students toward a successful future through mentorship, roadmaps, and stress-free career decisions. Whether in science, arts, or commerce, we provide structured plans and inspiring support for every student's journey.</p>
       <p>Let us help students unlock their potential with clarity, motivation, and the right direction.</p>
       <img src="confuse.png" alt="Bright future" class="highlight-image">
-      <div class="mission-quote">
-        “At MYF, we replace confusion with confidence and build futures where every student shines.”
-      </div>
-      <div style="text-align: center; margin-top: 40px;">
-        <img src="https://cdn-icons-png.flaticon.com/512/3456/3456426.png" alt="Why DYF" style="width: 60px; height: auto; margin-bottom: 15px;">
-        <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto; color: #444; font-weight: 500;">
-          Why did we create MYF? Because we know students often feel lost after 10th grade. DYF is here to light the path.
-        </p>
-        <p style="font-size: 1.1rem; max-width: 800px; margin: 15px auto; color: #444;">
-          Our website helps you compare <strong>government and private college fees</strong>, explore <strong>expected salaries</strong> in each stream, and even gives you a <strong>salary projection</strong> based on your chosen path.
-        </p>
-        <p style="font-size: 1.1rem; max-width: 800px; margin: 15px auto; color: #444;">
-          Your decision is yours — but we help you make it smarter. MYF helps you shine brighter, with clarity on your future.
-        </p>
-      </div>
+      <div class="mission-quote">“At MYF, we replace confusion with confidence and build futures where every student shines.”</div>
     </section>
 
     <section id="job-options">
       <h2>Options After 10th Class</h2>
       <p>Explore career opportunities after 10th:</p>
       <div style="text-align:center;">
-        <a href="10firstpage.html" class="big-button">Explore After 10th Options</a>
+        <button class="big-button" onclick="requireLogin(null,'10firstpage.html')">Explore After 10th Options</button>
       </div>
     </section>
 
-    <!-- New Tools Section -->
     <section id="tools">
       <h2>Try Our Tools</h2>
       <p>Interactive features to help you plan your future:</p>
       <div style="text-align:center; margin-top: 20px;">
-        <a href="#" class="big-button">💰 Budget Calculator</a>
-        <a href="#" class="big-button" style=" margin-left: 15px;">🤖 AI Coming Soon</a>
+        <button class="big-button" onclick="requireLogin('Please login to use the Budget Calculator','budget.html')">💰 Budget Calculator</button>
+        <button class="big-button" style=" margin-left: 15px;" onclick="requireLogin('Please login to use AI tools','ai.html')">🤖 AI Coming Soon</button>
       </div>
     </section>
 
@@ -293,15 +114,15 @@
       <br>
       <h2>Available Streams</h2>
       <div class="subjects">
-        <div class="subject">
+        <div class="subject" onclick="requireLogin(null,'streams/science.html')" data-target="streams/science.html">
           <img src="question mark.avif" alt="Science Stream">
           <p>Science</p>
         </div>
-        <div class="subject">
+        <div class="subject" onclick="requireLogin(null,'streams/arts.html')" data-target="streams/arts.html">
           <img src="question mark.avif" alt="Arts Stream">
           <p>Arts</p>
         </div>
-        <div class="subject">
+        <div class="subject" onclick="requireLogin(null,'streams/commerce.html')" data-target="streams/commerce.html">
           <img src="question mark.avif" alt="Commerce Stream">
           <p>Commerce</p>
         </div>
@@ -315,12 +136,216 @@
     </strong>
   </footer>
 
+  <div id="myf_toast" role="status" aria-live="polite"></div>
+
+  <!-- GOOGLE-ONLY AUTH SCRIPT (dynamic import with graceful fallback) -->
+  <!-- GOOGLE-ONLY AUTH SCRIPT (dynamic import with graceful fallback) -->
+<script type="module">
+/*
+  Auth module — popup-first with automatic redirect fallback when popup is blocked.
+  Updated to load firebase-config.js from repo root (not ./common/).
+*/
+(async () => {
+  // UI elements
+  const authContainer = document.getElementById('authContainer');
+  const toastEl = document.getElementById('myf_toast') || (() => {
+    const t = document.createElement('div'); t.id = 'myf_toast'; document.body.appendChild(t); return t;
+  })();
+
+  function showToast(msg, ms = 2600){
+    if(!toastEl) return alert(msg);
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastEl._t);
+    toastEl._t = setTimeout(()=>{ toastEl.classList.remove('show'); }, ms);
+  }
+  function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+
+  // firebase variables
+  let auth = null;
+  let fbAuthModule = null;
+  let firebaseOk = false;
+
+  async function loadFirebaseAuth(){
+    if(firebaseOk) return true;
+    try {
+      // Load your config file from repo root (not ./common/)
+      const cfg = await import('./firebase-config.js');
+
+      // Case A: firebase-config.js already exports an initialized `auth` (best)
+      if (cfg && cfg.auth) {
+        auth = cfg.auth;
+        // we still import the auth module to get helper functions / provider class
+        fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
+        firebaseOk = true;
+        return true;
+      }
+
+      // Case B: firebase-config.js exports `firebaseConfig` object (client config)
+      if (cfg && (cfg.firebaseConfig || cfg.default && cfg.default.firebaseConfig)) {
+        const firebaseConfig = cfg.firebaseConfig || (cfg.default && cfg.default.firebaseConfig);
+
+        // import modular SDK app + auth
+        const appModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js');
+        fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
+
+        // initialize app and auth
+        const app = appModule.initializeApp(firebaseConfig);
+        auth = fbAuthModule.getAuth(app);
+
+        firebaseOk = true;
+        return true;
+      }
+
+      // Case C: config file may have created globals (legacy). Try to use them.
+      if (window.firebase && window.firebase.auth) {
+        auth = window.firebase.auth();
+        fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
+        firebaseOk = true;
+        return true;
+      }
+
+      // If none of the above, fail with helpful message
+      console.error('Firebase config found but neither `auth` nor `firebaseConfig` was exported. Check ./firebase-config.js');
+      return false;
+    } catch (err) {
+      console.error('Auth load failed (looking for ./firebase-config.js or failing to import SDK):', err);
+      return false;
+    }
+  }
+
+  // Render header UI
+  function renderHeader(user){
+    if(!authContainer) return;
+    if(user){
+      const display = (user.displayName && user.displayName.trim()) ? user.displayName : (user.email || 'User');
+      authContainer.innerHTML = `<div class="auth-user">👋 ${escapeHtml(display)}</div><button id="logoutBtn" class="auth-logout">Logout</button>`;
+      const btn = document.getElementById('logoutBtn');
+      if(btn) btn.addEventListener('click', doLogout);
+      const userEl = document.querySelector('.auth-user');
+      if(userEl) userEl.addEventListener('click', () => {
+        showToast('Signed in as ' + display);
+      });
+    } else {
+      authContainer.innerHTML = `<button id="signinBtn" class="auth-btn">Sign in with Google</button>`;
+      const signinBtn = document.getElementById('signinBtn');
+      if(signinBtn) signinBtn.addEventListener('click', trySignIn);
+    }
+  }
+
+  // Try popup, fallback to redirect automatically on popup-blocked/closed errors
+  async function trySignIn(){
+    const ok = await loadFirebaseAuth();
+    if(!ok){
+      showToast('Sign-in unavailable — check console or add ./firebase-config.js');
+      return;
+    }
+
+    try {
+      // Prefer popup for quick UX
+      await fbAuthModule.signInWithPopup(auth, new fbAuthModule.GoogleAuthProvider());
+      // onAuthStateChanged handles UI update + return navigation if needed
+    } catch (err) {
+      console.warn('Popup sign-in error', err);
+      const code = (err && (err.code || '')).toString();
+      if(code.includes('popup-blocked') || code.includes('popup_closed_by_user') || code.includes('auth/popup-blocked') || code.includes('auth/popup-closed-by-user')){
+        // fallback: redirect flow (works when popup blocked)
+        try {
+          await fbAuthModule.signInWithRedirect(auth, new fbAuthModule.GoogleAuthProvider());
+        } catch (redirErr) {
+          console.error('Redirect fallback failed', redirErr);
+          showToast('Sign-in failed. Please try again.');
+        }
+      } else {
+        showToast('Google sign-in failed: ' + (err.message || err.code || 'error'));
+      }
+    }
+  }
+
+  // requireLogin: used by gated links/buttons
+  async function requireLogin(message, target){
+    const ok = await loadFirebaseAuth();
+    if(!ok){
+      showToast('Sign-in unavailable. Check console.');
+      return;
+    }
+    const user = auth.currentUser;
+    if(user){
+      if(user.emailVerified === false){
+        showToast('Please verify your email (if applicable) before accessing this.');
+        return;
+      }
+      if(target){
+        if(typeof target === 'string' && target.startsWith('#')){
+          const el = document.querySelector(target);
+          if(el){ el.scrollIntoView({behavior:'smooth'}); return; }
+        }
+        window.location.href = target;
+        return;
+      }
+      if(message) alert(message);
+      return;
+    }
+    showToast(message || 'Please sign in to continue');
+    await trySignIn();
+  }
+
+  // Logout helper
+  async function doLogout(){
+    if(!firebaseOk || !auth){ showToast('Not signed in'); renderHeader(null); return; }
+    try {
+      await fbAuthModule.signOut(auth);
+      showToast('You have been logged out.');
+      renderHeader(null);
+    } catch (e) {
+      console.warn('Logout failed', e);
+      showToast('Logout failed');
+    }
+  }
+
+  // initialize: attempt to load firebase; if fail, show fallback signin button that explains missing config
+  (async () => {
+    const ok = await loadFirebaseAuth();
+    if(!ok){
+      if(authContainer) authContainer.innerHTML = `<button id="signinFallback" class="auth-btn">Sign in with Google</button>`;
+      const fbtn = document.getElementById('signinFallback');
+      if(fbtn) fbtn.addEventListener('click', () => {
+        showToast('Sign-in unavailable: configure ./firebase-config.js (see console).');
+        console.error('Firebase not configured or failed to import ./firebase-config.js');
+      });
+    } else {
+      // attach onAuthStateChanged if possible
+      try {
+        if (fbAuthModule && typeof fbAuthModule.onAuthStateChanged === 'function') {
+          fbAuthModule.onAuthStateChanged(auth, user => {
+            renderHeader(user);
+            try { if(window.gtag && user && user.uid) window.gtag('set', {'user_id': user.uid}); } catch(e){/*ignore*/ }
+          });
+        } else if (auth && typeof auth.onAuthStateChanged === 'function') {
+          // Some builds expose it on auth
+          auth.onAuthStateChanged(user => {
+            renderHeader(user);
+            try { if(window.gtag && user && user.uid) window.gtag('set', {'user_id': user.uid}); } catch(e){/*ignore*/ }
+          });
+        } else {
+          // fallback: just render no-user state
+          renderHeader(null);
+        }
+      } catch(e){
+        console.warn('onAuthState setup failed', e);
+        renderHeader(null);
+      }
+    }
+  })();
+
+  // expose to global scope
+  window.trySignIn = trySignIn;
+  window.requireLogin = requireLogin;
+  window.doLogout = doLogout;
+
+})();
+</script>
+
+
 </body>
 </html>
-
-
-
-
-
-
-
