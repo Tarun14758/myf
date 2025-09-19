@@ -20,6 +20,7 @@
       color: #fff;
       padding: 40px 20px;
       animation: fadeInDown 1s ease;
+      position: relative; /* for header auth widget */
     }
 
     @keyframes fadeInDown {
@@ -118,18 +119,42 @@
       padding: 20px 0;
     }
 
+    /* auth widget container in header (top-right) */
+    #authContainer {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 2000;
+    }
+    .auth-btn { background: #ffcc70; color: #0d1b2a; padding: 8px 12px; border-radius: 20px; border: none; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .auth-user { color:#fff; font-weight:700; padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); cursor:pointer }
+    .auth-logout { background:#e5533d; color:#fff; padding:6px 10px; border-radius:8px; border:none; font-weight:700; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+    /* blocked hint (when not allowed to view) */
+    #blockedHint { padding:30px; display:none }
+
+    /* Modal + toast removed (this page uses Google-only header) */
+
     @media (max-width: 768px) {
-      nav ul li {
-        display: block;
-        margin: 10px 0;
-      }
+      nav ul li { display: block; margin: 10px 0; }
+    }
+    @media (max-width: 520px) {
+      /* small screen tweaks */
     }
   </style>
 </head>
 <body>
+
   <header>
     <img src="logo.png" alt="DYF Logo" class="logo" />
     <h1>Salary Insights</h1>
+
+    <!-- Auth widget container (populated by script) -->
+    <div id="authContainer" aria-live="polite"></div>
+
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -139,101 +164,289 @@
     </nav>
   </header>
 
+  <!-- PROTECTED CONTENT: hidden until user signed-in & verified (or demo signed-in) -->
   <main>
-    <!-- Government Jobs -->
-    <section>
-      <h2>🏛️ Government Jobs</h2>
-      <p><strong>Indian Army, Railways, Police, SSC, Post Office</strong></p>
-      <ul>
-        <li><strong>Month 1:</strong> ₹15,000 – ₹20,000</li>
-        <li><strong>Month 2:</strong> ₹18,000 – ₹22,000</li>
-        <li><strong>Month 3:</strong> ₹20,000 – ₹25,000</li>
-        <li><strong>Month 4:</strong> ₹22,000 – ₹26,000</li>
-        <li><strong>Month 5:</strong> ₹25,000 – ₹28,000</li>
-      </ul>
-      <p class="skills">✨ Skills: Exam prep, Physical fitness, Computer knowledge</p>
-      <p><strong>👉 More salary insights coming soon…</strong></p>
-    </section>
+    <div id="privateContent" style="display:none">
+      <!-- Government Jobs -->
+      <section>
+        <h2>🏛️ Government Jobs</h2>
+        <p><strong>Indian Army, Railways, Police, SSC, Post Office</strong></p>
+        <ul>
+          <li><strong>Month 1:</strong> ₹15,000 – ₹20,000</li>
+          <li><strong>Month 2:</strong> ₹18,000 – ₹22,000</li>
+          <li><strong>Month 3:</strong> ₹20,000 – ₹25,000</li>
+          <li><strong>Month 4:</strong> ₹22,000 – ₹26,000</li>
+          <li><strong>Month 5:</strong> ₹25,000 – ₹28,000</li>
+        </ul>
+        <p class="skills">✨ Skills: Exam prep, Physical fitness, Computer knowledge</p>
+        <p><strong>👉 More salary insights coming soon…</strong></p>
+      </section>
 
-    <!-- Private Sector -->
-    <section>
-      <h2>💼 Private Sector Jobs</h2>
-      <p><strong>Data Entry, BPO, Sales, Delivery, Technician</strong></p>
-      <ul>
-        <li><strong>Month 1:</strong> ₹8,000 – ₹12,000</li>
-        <li><strong>Month 2:</strong> ₹10,000 – ₹14,000</li>
-        <li><strong>Month 3:</strong> ₹12,000 – ₹16,000</li>
-        <li><strong>Month 4:</strong> ₹14,000 – ₹18,000</li>
-        <li><strong>Month 5:</strong> ₹15,000 – ₹20,000</li>
-      </ul>
-      <p class="skills">✨ Skills: Computer basics, Communication, Typing speed</p>
-      <p><strong>👉 More salary insights coming soon…</strong></p>
-    </section>
+      <!-- Private Sector -->
+      <section>
+        <h2>💼 Private Sector Jobs</h2>
+        <p><strong>Data Entry, BPO, Sales, Delivery, Technician</strong></p>
+        <ul>
+          <li><strong>Month 1:</strong> ₹8,000 – ₹12,000</li>
+          <li><strong>Month 2:</strong> ₹10,000 – ₹14,000</li>
+          <li><strong>Month 3:</strong> ₹12,000 – ₹16,000</li>
+          <li><strong>Month 4:</strong> ₹14,000 – ₹18,000</li>
+          <li><strong>Month 5:</strong> ₹15,000 – ₹20,000</li>
+        </ul>
+        <p class="skills">✨ Skills: Computer basics, Communication, Typing speed</p>
+        <p><strong>👉 More salary insights coming soon…</strong></p>
+      </section>
 
-    <!-- Skilled Trades -->
-    <section>
-      <h2>🛠️ Skilled Trades & Vocational Careers</h2>
-      <p><strong>Mechanic, Electrician, Tailor, Photographer</strong></p>
-      <ul>
-        <li><strong>Month 1:</strong> ₹6,000 – ₹10,000</li>
-        <li><strong>Month 2:</strong> ₹8,000 – ₹12,000</li>
-        <li><strong>Month 3:</strong> ₹10,000 – ₹14,000</li>
-        <li><strong>Month 4:</strong> ₹12,000 – ₹15,000</li>
-        <li><strong>Month 5:</strong> ₹14,000 – ₹18,000</li>
-      </ul>
-      <p class="skills">✨ Skills: Practical training, Certifications, Experience</p>
-      <p><strong>👉 More salary insights coming soon…</strong></p>
-    </section>
+      <!-- Skilled Trades -->
+      <section>
+        <h2>🛠️ Skilled Trades & Vocational Careers</h2>
+        <p><strong>Mechanic, Electrician, Tailor, Photographer</strong></p>
+        <ul>
+          <li><strong>Month 1:</strong> ₹6,000 – ₹10,000</li>
+          <li><strong>Month 2:</strong> ₹8,000 – ₹12,000</li>
+          <li><strong>Month 3:</strong> ₹10,000 – ₹14,000</li>
+          <li><strong>Month 4:</strong> ₹12,000 – ₹15,000</li>
+          <li><strong>Month 5:</strong> ₹14,000 – ₹18,000</li>
+        </ul>
+        <p class="skills">✨ Skills: Practical training, Certifications, Experience</p>
+        <p><strong>👉 More salary insights coming soon…</strong></p>
+      </section>
 
-    <!-- Online Jobs -->
-    <section>
-      <h2>🌐 Online & Freelance Jobs</h2>
-      <p><strong>YouTube, Freelancing, Blogging, Web Dev</strong></p>
-      <ul>
-        <li><strong>Month 1:</strong> ₹5,000 – ₹8,000</li>
-        <li><strong>Month 2:</strong> ₹7,000 – ₹12,000</li>
-        <li><strong>Month 3:</strong> ₹10,000 – ₹18,000</li>
-        <li><strong>Month 4:</strong> ₹15,000 – ₹25,000</li>
-        <li><strong>Month 5:</strong> ₹20,000 – ₹30,000</li>
-      </ul>
-      <p class="skills">✨ Skills: Consistency, Content creation, Digital marketing</p>
-      <p><strong>👉 More salary insights coming soon…</strong></p>
-    </section>
+      <!-- Online Jobs -->
+      <section>
+        <h2>🌐 Online & Freelance Jobs</h2>
+        <p><strong>YouTube, Freelancing, Blogging, Web Dev</strong></p>
+        <ul>
+          <li><strong>Month 1:</strong> ₹5,000 – ₹8,000</li>
+          <li><strong>Month 2:</strong> ₹7,000 – ₹12,000</li>
+          <li><strong>Month 3:</strong> ₹10,000 – ₹18,000</li>
+          <li><strong>Month 4:</strong> ₹15,000 – ₹25,000</li>
+          <li><strong>Month 5:</strong> ₹20,000 – ₹30,000</li>
+        </ul>
+        <p class="skills">✨ Skills: Consistency, Content creation, Digital marketing</p>
+        <p><strong>👉 More salary insights coming soon…</strong></p>
+      </section>
 
-    <!-- Entrepreneurship -->
-    <section>
-      <h2>🚀 Entrepreneurship & Business</h2>
-      <p><strong>Retail Shop, Catering, Handicrafts, Photography</strong></p>
-      <ul>
-        <li><strong>Month 1:</strong> ₹10,000 – ₹15,000</li>
-        <li><strong>Month 2:</strong> ₹12,000 – ₹20,000</li>
-        <li><strong>Month 3:</strong> ₹15,000 – ₹25,000</li>
-        <li><strong>Month 4:</strong> ₹18,000 – ₹28,000</li>
-        <li><strong>Month 5:</strong> ₹20,000 – ₹30,000</li>
-      </ul>
-      <p class="skills">✨ Skills: Marketing, Financial planning, Customer service</p>
-      <p><strong>👉 More salary insights coming soon…</strong></p>
-    </section>
+      <!-- Entrepreneurship -->
+      <section>
+        <h2>🚀 Entrepreneurship & Business</h2>
+        <p><strong>Retail Shop, Catering, Handicrafts, Photography</strong></p>
+        <ul>
+          <li><strong>Month 1:</strong> ₹10,000 – ₹15,000</li>
+          <li><strong>Month 2:</strong> ₹12,000 – ₹20,000</li>
+          <li><strong>Month 3:</strong> ₹15,000 – ₹25,000</li>
+          <li><strong>Month 4:</strong> ₹18,000 – ₹28,000</li>
+          <li><strong>Month 5:</strong> ₹20,000 – ₹30,000</li>
+        </ul>
+        <p class="skills">✨ Skills: Marketing, Financial planning, Customer service</p>
+        <p><strong>👉 More salary insights coming soon…</strong></p>
+      </section>
 
-    <!-- Other Options -->
-    <section>
-      <h2>🌿 Other Career Options</h2>
-      <p><strong>Apprenticeships, Healthcare, Hospitality, Agriculture</strong></p>
-      <ul>
-        <li><strong>Month 1:</strong> ₹7,000 – ₹12,000</li>
-        <li><strong>Month 2:</strong> ₹9,000 – ₹14,000</li>
-        <li><strong>Month 3:</strong> ₹12,000 – ₹16,000</li>
-        <li><strong>Month 4:</strong> ₹14,000 – ₹18,000</li>
-        <li><strong>Month 5:</strong> ₹15,000 – ₹20,000</li>
-      </ul>
-      <p class="skills">✨ Skills: Teamwork, Technical courses, Work experience</p>
-      <p><strong>👉 More salary insights coming soon…</strong></p>
-    </section>
+      <!-- Other Options -->
+      <section>
+        <h2>🌿 Other Career Options</h2>
+        <p><strong>Apprenticeships, Healthcare, Hospitality, Agriculture</strong></p>
+        <ul>
+          <li><strong>Month 1:</strong> ₹7,000 – ₹12,000</li>
+          <li><strong>Month 2:</strong> ₹9,000 – ₹14,000</li>
+          <li><strong>Month 3:</strong> ₹12,000 – ₹16,000</li>
+          <li><strong>Month 4:</strong> ₹14,000 – ₹18,000</li>
+          <li><strong>Month 5:</strong> ₹15,000 – ₹20,000</li>
+        </ul>
+        <p class="skills">✨ Skills: Teamwork, Technical courses, Work experience</p>
+        <p><strong>👉 More salary insights coming soon…</strong></p>
+      </section>
+    </div>
+
+    <!-- Fallback public hint (visible while blocked) -->
+    <div id="blockedHint" style="display:none">
+      <p style="font-size:1.1rem; color:#444">This content is available to signed-in users only. Please sign in with Google to view the full page.</p>
+      <div style="margin-top:14px;">
+        <button id="googleFallbackBtn" class="auth-btn" style="margin-right:8px;">Sign in with Google</button>
+        <button id="demoBtn" class="auth-btn" style="background:#9ca3af;">Demo sign-in</button>
+      </div>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 DYF - Make You Better. All rights reserved.</p>
   </footer>
+
+  <!-- AUTH SCRIPT: Google popup-first sign-in + redirect fallback, with demo fallback -->
+  <script type="module">
+  (async ()=> {
+    let firebaseAvailable = false;
+    let auth = null;
+    let fb = null;
+    let provider = null;
+    let onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut, GoogleAuthProvider;
+
+    // UI refs
+    const authContainer = document.getElementById('authContainer');
+    const privateContent = document.getElementById('privateContent');
+    const blockedHint = document.getElementById('blockedHint');
+    const googleFallbackBtn = document.getElementById('googleFallbackBtn');
+    const demoBtn = document.getElementById('demoBtn');
+
+    // demo localStorage fallback (useful when firebase-config.js missing)
+    const DEMO_KEY = 'myf_demo_user';
+    function getDemoUser(){ try { return JSON.parse(localStorage.getItem(DEMO_KEY)); } catch(e){ return null; } }
+    function setDemoUser(u){ localStorage.setItem(DEMO_KEY, JSON.stringify(u)); }
+    function clearDemoUser(){ localStorage.removeItem(DEMO_KEY); }
+
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+
+    // try to load firebase auth + config
+    try {
+      // NOTE: load config from repo root (not ./common/)
+      const cfg = await import('./firebase-config.js'); // expects export { auth }
+      fb = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
+
+      auth = cfg.auth;
+      onAuthStateChanged = fb.onAuthStateChanged;
+      signInWithPopup = fb.signInWithPopup;
+      signInWithRedirect = fb.signInWithRedirect;
+      signOut = fb.signOut;
+      GoogleAuthProvider = fb.GoogleAuthProvider;
+      provider = new GoogleAuthProvider();
+
+      firebaseAvailable = true;
+      console.log('salary page: Firebase auth loaded.');
+    } catch (e) {
+      console.warn('salary page: Firebase not available — using demo fallback.', e);
+      firebaseAvailable = false;
+    }
+
+    // Render the header auth UI:
+    function renderAuthUI(user){
+      if(!authContainer) return;
+      if(user){
+        const display = (user.displayName && user.displayName.trim()) ? user.displayName : (user.email || 'User');
+        authContainer.innerHTML = `
+          <div id="headerUser" class="auth-user">👋 ${escapeHtml(display)}</div>
+          <button id="headerLogoutBtn" class="auth-logout">Logout</button>
+        `;
+        const logoutBtn = document.getElementById('headerLogoutBtn');
+        if(logoutBtn) logoutBtn.addEventListener('click', async ()=> {
+          if(firebaseAvailable){
+            try { await signOut(auth); } catch(err){ console.warn('Sign out failed', err); }
+          } else {
+            clearDemoUser();
+            renderAuthUI(null);
+            if(privateContent) privateContent.style.display = 'none';
+            if(blockedHint) blockedHint.style.display = 'block';
+          }
+        });
+      } else {
+        // show only Google sign-in (and demo) when logged out
+        authContainer.innerHTML = `
+          <button id="headerGoogleBtn" class="auth-btn" title="Sign in with Google">Sign in with Google</button>
+        `;
+        const headerGoogleBtn = document.getElementById('headerGoogleBtn');
+        if(headerGoogleBtn) headerGoogleBtn.addEventListener('click', trySignIn);
+      }
+    }
+
+    // popup-first Google sign-in with redirect fallback
+    async function trySignIn(){
+      if(!firebaseAvailable){
+        // fallback: demo sign-in (creates a demo user with email only)
+        const email = prompt('No Firebase configured. Enter an email to demo-sign-in (e.g. you@demo.com):');
+        if(!email) return;
+        setDemoUser({ email, displayName: email.split('@')[0], demo: true });
+        renderAuthUI({ email, displayName: email.split('@')[0] });
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+        return;
+      }
+
+      try {
+        await signInWithPopup(auth, provider);
+        // onAuthStateChanged handles UI and redirect
+      } catch (err) {
+        console.warn('Popup sign-in error', err);
+        const code = (err && (err.code || '')).toString();
+        if(code.includes('popup-blocked') || code.includes('popup_closed_by_user') || code.includes('auth/popup-blocked') || code.includes('auth/popup-closed-by-user')){
+          // fallback to redirect
+          try {
+            await signInWithRedirect(auth, provider);
+          } catch (re) {
+            console.error('Redirect fallback failed', re);
+            alert('Sign-in failed. Please try again.');
+          }
+        } else {
+          alert('Google sign-in failed: ' + (err.message || err.code || 'error'));
+        }
+      }
+    }
+
+    // Demo button in page
+    if(demoBtn) {
+      demoBtn.addEventListener('click', () => {
+        const email = prompt('Demo sign-in: enter an email (e.g. you@demo.com):');
+        if(!email) return;
+        setDemoUser({ email, displayName: email.split('@')[0], demo: true });
+        renderAuthUI({ email, displayName: email.split('@')[0] });
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+      });
+    }
+
+    if(googleFallbackBtn) googleFallbackBtn.addEventListener('click', trySignIn);
+
+    // small helper to show blocked state
+    function showBlockedState(){
+      if(privateContent) privateContent.style.display = 'none';
+      if(blockedHint) blockedHint.style.display = 'block';
+    }
+
+    // on load: auth state handling
+    if(firebaseAvailable && onAuthStateChanged && auth){
+      onAuthStateChanged(auth, user => {
+        if(user && (user.emailVerified === undefined || user.emailVerified === true)){
+          // verified (or cannot check) -> show content
+          renderAuthUI(user);
+          if(privateContent) privateContent.style.display = 'block';
+          if(blockedHint) blockedHint.style.display = 'none';
+        } else if(user && !user.emailVerified){
+          // signed in but not verified -> show header but block content and prompt verification
+          renderAuthUI(user);
+          if(privateContent) privateContent.style.display = 'none';
+          if(blockedHint) blockedHint.style.display = 'block';
+          if(blockedHint) blockedHint.innerHTML = '<p style="font-size:1.05rem;color:#444">Please verify your Google/account email address to view this page. Check your inbox for the verification email.</p>';
+        } else {
+          // not signed in
+          renderAuthUI(null);
+          showBlockedState();
+        }
+      });
+    } else {
+      // demo fallback path
+      const u = getDemoUser();
+      if(u){
+        renderAuthUI(u);
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+      } else {
+        renderAuthUI(null);
+        showBlockedState();
+      }
+    }
+
+    // Expose sign-in / sign-out for console if needed
+    window.trySignIn = trySignIn;
+    window.doLogout = async () => {
+      if(firebaseAvailable && signOut && auth){
+        try { await signOut(auth); } catch(e){ console.warn('logout failed', e); }
+      } else {
+        clearDemoUser();
+        renderAuthUI(null);
+        if(privateContent) privateContent.style.display = 'none';
+        if(blockedHint) blockedHint.style.display = 'block';
+      }
+    };
+  })();
+  </script>
+
 </body>
 </html>
-
