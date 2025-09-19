@@ -6,100 +6,40 @@
   <title>Contact Us - DYF</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;background:#f4f9fb;color:#333}
+    header{background:#0d1b2a;color:#fff;padding:40px 20px;text-align:center;animation:fadeInDown 1s;position:relative}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+    .logo{width:150px;height:150px;display:block;margin:0 auto 10px;animation:bounce .7s infinite alternate}
+    @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+    h1{font-size:2.5rem;font-weight:800;margin-bottom:10px;color:#ffcc70}
+    nav ul{list-style:none;padding:10px 0 0}
+    nav ul li{display:inline-block;margin:0 15px}
+    nav ul li a{color:#80deea;font-weight:600;text-decoration:none;font-size:1.1rem;transition:color .3s}
+    nav ul li a:hover{color:#ffd166}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f4f9fb;
-      color: #333;
-    }
+    /* auth */
+    #authContainer{position:absolute;right:18px;top:18px;display:flex;gap:8px;align-items:center;z-index:2000}
+    .auth-btn{background:#ffcc70;color:#0d1b2a;padding:8px 12px;border-radius:20px;border:none;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+    .auth-user{color:#fff;font-weight:700;padding:6px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.08);cursor:pointer}
+    .auth-logout{background:#e5533d;color:#fff;padding:6px 10px;border-radius:8px;border:none;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.12)}
 
-    header {
-      background: #0d1b2a;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-      animation: fadeInDown 1s ease;
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    main{max-width:1000px;margin:50px auto;padding:0 20px}
+    section{background:#fff;border-radius:12px;padding:50px 40px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.05)}
+    section h2{font-size:2rem;color:#007c91;margin-bottom:20px}
+    section p{font-size:1.1rem;margin-bottom:25px;color:#444}
+    .contact-buttons{display:flex;gap:16px;justify-content:center;align-items:center;margin-top:18px;flex-wrap:wrap}
+    .contact-link{display:inline-flex;align-items:center;gap:12px;padding:14px 28px;border-radius:50px;font-weight:600;text-decoration:none;color:#fff;box-shadow:0 6px 18px rgba(7,86,92,.12);transition:transform .18s,box-shadow .18s;min-width:240px;justify-content:center}
+    .contact-link:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(7,86,92,.14)}
+    .instagram{background:linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)}
+    .email{background:#007c91}
+    .contact-link svg{width:20px;height:20px;flex-shrink:0}
+    footer{background:#0d1b2a;color:#fff;text-align:center;padding:20px 0;margin-top:60px}
 
-    .logo { width: 150px; height: 150px; display: block; margin: 0 auto 10px; animation: bounce 0.7s infinite alternate; }
-    @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+    /* toast */
+    #myf_toast{position:fixed;right:18px;bottom:18px;background:#111;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:1600;opacity:0;transition:opacity .25s}
 
-    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; color: #ffcc70; }
-
-    nav ul { list-style: none; padding: 10px 0 0; }
-    nav ul li { display: inline-block; margin: 0 15px; }
-    nav ul li a { color: #80deea; font-weight: 600; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
-    nav ul li a:hover { color: #ffd166; }
-
-    main { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
-
-    section {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 50px 40px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-    section h2 { font-size: 2rem; color: #007c91; margin-bottom: 20px; }
-    section p { font-size: 1.1rem; margin-bottom: 25px; color: #444; }
-
-    /* Buttons container */
-    .contact-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 18px;
-      flex-wrap: wrap;
-    }
-
-    /* Shared button style */
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 28px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      color: #fff;
-      box-shadow: 0 6px 18px rgba(7, 86, 92, 0.12);
-      transition: transform .18s ease, box-shadow .18s ease;
-      min-width: 240px;
-      justify-content: center;
-    }
-    .contact-link:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(7, 86, 92, 0.14); }
-
-    /* Instagram-specific look (gradient) */
-    .instagram {
-      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    }
-
-    /* Email-specific look (teal) */
-    .email {
-      background: #007c91;
-    }
-
-    /* Icon sizing inside buttons */
-    .contact-link svg { width: 20px; height: 20px; flex-shrink: 0; }
-
-    footer {
-      background: #0d1b2a;
-      color: #fff;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 60px;
-    }
-
-    @media (max-width: 520px) {
-      .contact-link { min-width: 100%; padding: 12px 18px; border-radius: 10px; }
-      nav ul li { display: block; margin: 10px 0; }
-    }
+    @media (max-width:520px){.contact-link{min-width:100%;padding:12px 18px;border-radius:10px}nav ul li{display:block;margin:10px 0}#authContainer{right:12px;top:12px}}
   </style>
 </head>
 <body>
@@ -107,6 +47,10 @@
   <header>
     <img src="logo.png" alt="DYF Logo" class="logo">
     <h1>MYF - Make You Better</h1>
+
+    <!-- Auth widget (populated by script) -->
+    <div id="authContainer" aria-live="polite"></div>
+
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -122,35 +66,13 @@
       <p>Our detailed contact page is coming soon ⏳<br>
          Meanwhile, you can reach us directly at:</p>
 
-      <!-- contact buttons: Instagram first, Email second -->
       <div class="contact-buttons">
-        <!-- Instagram (first) -->
-        <a class="contact-link instagram"
-           href="https://www.instagram.com/myf.official2025"
-           target="_blank" rel="noopener noreferrer" aria-label="Open Instagram - myf.official2025">
-          <!-- simple camera/icon (white) -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="white" opacity="0"/>
-            <!-- outer rounded square -->
-            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="white" stroke-width="1.4" opacity="0.95"/>
-            <!-- center circle -->
-            <circle cx="12" cy="11.8" r="3.2" stroke="white" stroke-width="1.4" opacity="0.95"/>
-            <!-- small top-right dot -->
-            <circle cx="17.2" cy="6.2" r="0.8" fill="white"/>
-          </svg>
+        <a class="contact-link instagram" href="https://www.instagram.com/myf.official2025" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="white" opacity="0"/><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="white" stroke-width="1.4" opacity="0.95"/><circle cx="12" cy="11.8" r="3.2" stroke="white" stroke-width="1.4" opacity="0.95"/><circle cx="17.2" cy="6.2" r="0.8" fill="white"/></svg>
           <span>@myf.official2025</span>
         </a>
-
-        <!-- Email (second) -->
-        <a class="contact-link email"
-           href="mailto:myf.official2025@gmail.com"
-           aria-label="Send email to myf.official2025@gmail.com">
-          <!-- mail icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3 7.5v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M21 7.5L12 13 3 7.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="3" y="5" width="18" height="3.5" rx="1" fill="white" opacity="0"/>
-          </svg>
+        <a class="contact-link email" href="mailto:myf.official2025@gmail.com" aria-label="Send email to myf.official2025@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 7.5v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7.5L12 13 3 7.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>myf.official2025@gmail.com</span>
         </a>
       </div>
@@ -159,10 +81,164 @@
   </main>
 
   <footer>
-    <strong>
-      <p>&copy; 2025 DYF - Make You Better. All rights reserved.</p>
-    </strong>
+    <strong><p>&copy; 2025 DYF - Make You Better. All rights reserved.</p></strong>
   </footer>
+
+  <div id="myf_toast" aria-hidden="true"></div>
+
+  <!-- GOOGLE-ONLY AUTH SCRIPT -->
+  <script type="module">
+  (async ()=> {
+    // UI refs
+    const authContainer = document.getElementById('authContainer');
+    const toastEl = document.getElementById('myf_toast');
+
+    // Firebase variables
+    let firebaseAvailable = false;
+    let auth = null;
+    let fbAuth = null;
+    let provider = null;
+    let onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut, GoogleAuthProvider;
+
+    // Helper: safe toast
+    function showToast(msg, ms=2600){
+      if(!toastEl){ alert(msg); return; }
+      toastEl.textContent = msg;
+      toastEl.style.opacity = '1';
+      clearTimeout(toastEl._hid);
+      toastEl._hid = setTimeout(()=>{ toastEl.style.opacity = '0'; }, ms);
+    }
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+
+    // Try load firebase config + auth library
+    try {
+      // load from repo root (not common)
+      const cfg = await import('./firebase-config.js');
+      fbAuth = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
+
+      auth = cfg.auth;
+      onAuthStateChanged = fbAuth.onAuthStateChanged;
+      signInWithPopup = fbAuth.signInWithPopup;
+      signInWithRedirect = fbAuth.signInWithRedirect;
+      signOut = fbAuth.signOut;
+      GoogleAuthProvider = fbAuth.GoogleAuthProvider;
+
+      provider = new GoogleAuthProvider();
+      firebaseAvailable = true;
+      console.log('MYF: Firebase auth loaded (Google-only).');
+    } catch (err) {
+      console.warn('MYF: Firebase not loaded — Google sign-in unavailable until you add ./firebase-config.js', err);
+      firebaseAvailable = false;
+    }
+
+    // Render the header auth UI (Google-only)
+    function renderAuthUI(user){
+      if(!authContainer) return;
+      if(user){
+        const display = (user.displayName && user.displayName.trim()) ? user.displayName : (user.email || 'User');
+        authContainer.innerHTML = `
+          <div id="headerUser" class="auth-user" title="${escapeHtml(user.email||'')}">👋 ${escapeHtml(display)}</div>
+          <button id="headerLogoutBtn" class="auth-logout">Logout</button>
+        `;
+        const logoutBtn = document.getElementById('headerLogoutBtn');
+        logoutBtn && logoutBtn.addEventListener('click', async ()=> {
+          if(!firebaseAvailable){ showToast('Logout unavailable (no Firebase).'); return; }
+          try { await signOut(auth); renderAuthUI(null); showToast('Logged out'); }
+          catch(e){ console.warn('Sign out failed', e); showToast('Logout failed'); }
+        });
+        const headerUser = document.getElementById('headerUser');
+        headerUser && headerUser.addEventListener('click', ()=> {
+          showToast('Signed in as ' + (user.displayName || user.email || 'User'));
+        });
+      } else {
+        // if Firebase not configured show disabled message
+        if(!firebaseAvailable){
+          authContainer.innerHTML = `<button id="googleSignInBtn" class="auth-btn" title="Sign in with Google (configure Firebase first)">Sign in with Google</button>`;
+          const btn = document.getElementById('googleSignInBtn');
+          btn && btn.addEventListener('click', ()=> {
+            showToast('Sign-in unavailable: configure ./firebase-config.js (see console).');
+          });
+          return;
+        }
+        authContainer.innerHTML = `<button id="googleSignInBtn" class="auth-btn">Sign in with Google</button>`;
+        const btn = document.getElementById('googleSignInBtn');
+        btn && btn.addEventListener('click', ()=> trySignIn());
+      }
+    }
+
+    // Popup-first Google sign-in, fallback to redirect if popup blocked
+    async function trySignIn(target){
+      if(!firebaseAvailable){ showToast('Sign-in unavailable: Firebase not configured.'); return; }
+      // store pending target in sessionStorage so redirect flow can restore it
+      if(target) sessionStorage.setItem('myf_pending_next', target);
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (err) {
+        console.warn('Google popup error', err);
+        const code = (err && (err.code || '')).toString();
+        if(code.includes('popup') || code.includes('popup-blocked') || code.includes('popup-closed-by-user') || code.includes('auth/popup-blocked')){
+          try {
+            await signInWithRedirect(auth, provider);
+          } catch(re){ console.error('Redirect fallback failed', re); showToast('Sign-in failed. Please try again.'); }
+        } else {
+          showToast('Google sign-in failed: ' + (err && (err.message || err.code) || 'error'));
+        }
+      }
+    }
+
+    // requireLogin helper to use from inline onclicks or other pages:
+    // requireLogin(target) -> if signed in navigate; else begin Google sign-in and remember target
+    function requireLogin(target){
+      const user = (firebaseAvailable && auth && auth.currentUser) ? auth.currentUser : null;
+      if(user){
+        // already signed in
+        if(target && typeof target === 'string'){
+          if(target.startsWith('#')){
+            const el = document.querySelector(target);
+            if(el){ el.scrollIntoView({ behavior: 'smooth' }); return; }
+          } else {
+            window.location.href = target;
+            return;
+          }
+        }
+        showToast('You’re already signed in.');
+        return;
+      }
+      // not signed in -> start Google sign-in
+      trySignIn(target || window.location.pathname);
+    }
+
+    // Listen for Firebase auth state changes and redirect if pending target exists
+    if(firebaseAvailable && onAuthStateChanged && auth){
+      onAuthStateChanged(auth, user => {
+        renderAuthUI(user || null);
+        if(user){
+          // after sign-in, check pending redirect stored in sessionStorage
+          const pending = sessionStorage.getItem('myf_pending_next');
+          if(pending){
+            sessionStorage.removeItem('myf_pending_next');
+            // safe redirect check (no external absolute URLs, no ..)
+            if(!/^(https?:)?\/\//i.test(pending) && !pending.includes('..')){
+              window.location.href = pending;
+            } else {
+              console.warn('Blocked unsafe pending redirect:', pending);
+            }
+          }
+        }
+      });
+    } else {
+      // firebase not available -> show logged out UI
+      renderAuthUI(null);
+    }
+
+    // Expose helpers globally so other pages/inline onclicks can call
+    window.requireLogin = requireLogin;
+    window.trySignIn = trySignIn;
+
+    // If the page was opened by a redirect sign-in flow, firebase will handle the redirect result;
+    // pendingNext may route after onAuthStateChanged above.
+  })();
+  </script>
 
 </body>
 </html>
