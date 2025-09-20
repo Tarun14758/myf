@@ -20,6 +20,7 @@
       padding: 40px 20px;
       text-align: center;
       animation: fadeInDown 1s ease;
+      position: relative; /* for auth widget */
     }
 
     @keyframes fadeInDown {
@@ -82,13 +83,13 @@
       margin-bottom: 40px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
       transition: all 0.6s ease-out;
+      text-align: center;
     }
 
     section h2 {
       font-size: 1.8rem;
       color: #007c91;
       margin-bottom: 15px;
-      text-align: center;
     }
 
     section p {
@@ -117,6 +118,8 @@
       text-decoration: none;
       text-align: center;
       min-width: 200px;
+      cursor: pointer;
+      border: none;
     }
 
     .big-button:hover {
@@ -134,12 +137,36 @@
     @media (max-width: 768px) {
       nav ul li { display: block; margin: 10px 0; }
     }
+
+    /* auth widget container in header (top-right) */
+    #authContainer {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 2000;
+    }
+    .auth-btn { background: #ffcc70; color: #0d1b2a; padding: 8px 12px; border-radius: 20px; border: none; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .auth-user { color:#fff; font-weight:700; padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); cursor:pointer }
+    .auth-logout { background:#e5533d; color:#fff; padding:6px 10px; border-radius:8px; border:none; font-weight:700; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+    /* blocked hint */
+    #blockedHint { padding: 30px; display: none; text-align:center; }
+
+    /* small toast */
+    #myf_toast{position:fixed;right:18px;bottom:18px;background:#111;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:1600;opacity:0;transition:opacity .25s}
   </style>
 </head>
 <body>
   <header>
     <img src="logo.png" alt="DYF Logo" class="logo" />
     <h1>Find Best Coaching & Colleges</h1>
+
+    <!-- Auth container (populated by script) -->
+    <div id="authContainer" aria-live="polite"></div>
+
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -150,101 +177,298 @@
   </header>
 
   <main>
+    <!-- protected wrapper -->
+    <div id="privateContent" style="display:none">
+      <!-- Government coaching -->
+      <section>
+        <h2>🏛️ Coaching for Government Jobs</h2>
+        <p>Prepare for SSC, Railways, Defence, Police & Post Office with top institutes</p>
+        <div class="button-group">
+          <a href="https://ssc.nic.in/" class="big-button" target="_blank" rel="noopener noreferrer">📘 SSC Official Site</a>
+          <a href="https://indianrailways.gov.in/" class="big-button" target="_blank" rel="noopener noreferrer">🚆 Railways</a>
+          <a href="https://joinindianarmy.nic.in/" class="big-button" target="_blank" rel="noopener noreferrer">🎖️ Indian Army</a>
+          <a href="https://www.crpf.gov.in/" class="big-button" target="_blank" rel="noopener noreferrer">👮 CRPF</a>
+          <a href="https://www.indiapost.gov.in/" class="big-button" target="_blank" rel="noopener noreferrer">📮 Post Office</a>
+        </div>
+      </section>
 
-    <!-- Government Jobs -->
-    <section>
-      <h2>🏛️ Coaching for Government Jobs</h2>
-      <p>Prepare for SSC, Railways, Defence, Police & Post Office with top institutes</p>
-      <div class="button-group">
-        <a href="https://ssc.nic.in/" class="big-button" target="_blank">📘 SSC Official Site</a>
-        <a href="https://indianrailways.gov.in/" class="big-button" target="_blank">🚆 Railways</a>
-        <a href="https://joinindianarmy.nic.in/" class="big-button" target="_blank">🎖️ Indian Army</a>
-        <a href="https://www.crpf.gov.in/" class="big-button" target="_blank">👮 CRPF</a>
-        <a href="https://www.indiapost.gov.in/" class="big-button" target="_blank">📮 Post Office</a>
+      <!-- Private sector training -->
+      <section>
+        <h2>💼 Private Sector Skills Training</h2>
+        <p>Build skills for jobs like data entry, BPO, marketing, sales & IT support</p>
+        <div class="button-group">
+          <a href="https://www.nielit.gov.in/" class="big-button" target="_blank" rel="noopener noreferrer">💻 NIELIT Courses</a>
+          <a href="https://www.aptech-education.com/" class="big-button" target="_blank" rel="noopener noreferrer">📊 Aptech Institute</a>
+          <a href="https://www.iiht.com/" class="big-button" target="_blank" rel="noopener noreferrer">🖥️ IIHT Training</a>
+        </div>
+      </section>
+
+      <!-- ITI & skilled trade colleges -->
+      <section>
+        <h2>🛠️ ITI & Skilled Trade Colleges</h2>
+        <p>Learn trades like electrician, mechanic, plumber & technical skills</p>
+        <div class="button-group">
+          <a href="https://www.ncvtmis.gov.in/" class="big-button" target="_blank" rel="noopener noreferrer">🔧 NCVT ITI Portal</a>
+          <a href="https://www.aicte-india.org/" class="big-button" target="_blank" rel="noopener noreferrer">🏫 AICTE Polytechnic</a>
+        </div>
+      </section>
+
+      <!-- Online / Freelance -->
+      <section>
+        <h2>🌐 Online & Freelance Learning</h2>
+        <p>Master coding, design, freelancing & digital skills online</p>
+        <div class="button-group">
+          <a href="https://www.coursera.org/" class="big-button" target="_blank" rel="noopener noreferrer">📚 Coursera</a>
+          <a href="https://www.udemy.com/" class="big-button" target="_blank" rel="noopener noreferrer">🎥 Udemy</a>
+          <a href="https://www.codecademy.com/" class="big-button" target="_blank" rel="noopener noreferrer">💻 Codecademy</a>
+          <a href="https://www.fiverr.com/" class="big-button" target="_blank" rel="noopener noreferrer">🧑‍💻 Fiverr</a>
+        </div>
+      </section>
+
+      <!-- Entrepreneurship -->
+      <section>
+        <h2>🚀 Entrepreneurship & Startup Training</h2>
+        <p>Start your own business with government & startup programs</p>
+        <div class="button-group">
+          <a href="https://www.startupindia.gov.in/" class="big-button" target="_blank" rel="noopener noreferrer">🌟 Startup India</a>
+          <a href="https://msme.gov.in/" class="big-button" target="_blank" rel="noopener noreferrer">🏢 MSME Portal</a>
+        </div>
+      </section>
+
+      <!-- Other institutes -->
+      <section>
+        <h2>🌿 Other Career Institutes</h2>
+        <p>Explore healthcare, hospitality, fitness & agriculture institutes</p>
+        <div class="button-group">
+          <a href="https://www.aiims.edu/en.html" class="big-button" target="_blank" rel="noopener noreferrer">🏥 AIIMS Nursing</a>
+          <a href="https://www.iittm.ac.in/" class="big-button" target="_blank" rel="noopener noreferrer">🧳 IITTM Tourism</a>
+          <a href="https://icar.org.in/" class="big-button" target="_blank" rel="noopener noreferrer">🌾 ICAR Agriculture</a>
+          <a href="https://www.nsdcindia.org/" class="big-button" target="_blank" rel="noopener noreferrer">🎓 NSDC Skills</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- blocked hint: visible if not signed in or unverified -->
+    <div id="blockedHint" style="display:none">
+      <p style="font-size:1.1rem; color:#444; max-width:800px; margin:0 auto 12px">
+        This content is available to signed-in users only. Please sign in with Google to view the full page.
+      </p>
+      <div style="margin-top:14px;">
+        <button id="blockedGoogleBtn" class="big-button" style="background:#4285F4;">Sign in with Google</button>
+        <button id="demoBtn" class="big-button" style="background:#9ca3af;margin-left:10px;">Demo sign-in</button>
       </div>
-    </section>
-
-    <!-- Private Sector -->
-    <section>
-      <h2>💼 Private Sector Skills Training</h2>
-      <p>Build skills for jobs like data entry, BPO, marketing, sales & IT support</p>
-      <div class="button-group">
-        <a href="https://www.nielit.gov.in/" class="big-button" target="_blank">💻 NIELIT Courses</a>
-        <a href="https://www.aptech-education.com/" class="big-button" target="_blank">📊 Aptech Institute</a>
-        <a href="https://www.iiht.com/" class="big-button" target="_blank">🖥️ IIHT Training</a>
-      </div>
-    </section>
-
-    <!-- Skilled Trades -->
-    <section>
-      <h2>🛠️ ITI & Skilled Trade Colleges</h2>
-      <p>Learn trades like electrician, mechanic, plumber & technical skills</p>
-      <div class="button-group">
-        <a href="https://www.ncvtmis.gov.in/" class="big-button" target="_blank">🔧 NCVT ITI Portal</a>
-        <a href="https://www.aicte-india.org/" class="big-button" target="_blank">🏫 AICTE Polytechnic</a>
-      </div>
-    </section>
-
-    <!-- Online/Freelance -->
-    <section>
-      <h2>🌐 Online & Freelance Learning</h2>
-      <p>Master coding, design, freelancing & digital skills online</p>
-      <div class="button-group">
-        <a href="https://www.coursera.org/" class="big-button" target="_blank">📚 Coursera</a>
-        <a href="https://www.udemy.com/" class="big-button" target="_blank">🎥 Udemy</a>
-        <a href="https://www.codecademy.com/" class="big-button" target="_blank">💻 Codecademy</a>
-        <a href="https://www.fiverr.com/" class="big-button" target="_blank">🧑‍💻 Fiverr</a>
-      </div>
-    </section>
-
-    <!-- Entrepreneurship -->
-    <section>
-      <h2>🚀 Entrepreneurship & Startup Training</h2>
-      <p>Start your own business with government & startup programs</p>
-      <div class="button-group">
-        <a href="https://www.startupindia.gov.in/" class="big-button" target="_blank">🌟 Startup India</a>
-        <a href="https://msme.gov.in/" class="big-button" target="_blank">🏢 MSME Portal</a>
-      </div>
-    </section>
-
-    <!-- Other Career Options -->
-    <section>
-      <h2>🌿 Other Career Institutes</h2>
-      <p>Explore healthcare, hospitality, fitness & agriculture institutes</p>
-      <div class="button-group">
-        <a href="https://www.aiims.edu/en.html" class="big-button" target="_blank">🏥 AIIMS Nursing</a>
-        <a href="https://www.iittm.ac.in/" class="big-button" target="_blank">🧳 IITTM Tourism</a>
-        <a href="https://icar.org.in/" class="big-button" target="_blank">🌾 ICAR Agriculture</a>
-        <a href="https://www.nsdcindia.org/" class="big-button" target="_blank">🎓 NSDC Skills</a>
-      </div>
-    </section>
-
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 DYF - Make You Better. All rights reserved.</p>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const sections = document.querySelectorAll('section');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, { threshold: 0.1 });
+  <!-- GOOGLE-ONLY AUTH SCRIPT (Firebase + demo fallback) -->
+  <script type="module">
+  (async ()=> {
+    // Try to load Firebase auth; otherwise demo fallback
+    let firebaseAvailable = false;
+    let auth = null;
+    let fbAuth = null;
+    let provider = null;
+    let onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut, GoogleAuthProvider;
 
-      sections.forEach((section) => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'all 0.6s ease-out';
-        observer.observe(section);
-      });
+    // UI refs
+    const authContainer = document.getElementById('authContainer');
+    const privateContent = document.getElementById('privateContent');
+    const blockedHint = document.getElementById('blockedHint');
+
+    // demo localStorage helpers
+    const DEMO_KEY = 'myf_demo_user';
+    function getDemoUser(){ try { return JSON.parse(localStorage.getItem(DEMO_KEY)); } catch(e){ return null; } }
+    function setDemoUser(u){ localStorage.setItem(DEMO_KEY, JSON.stringify(u)); }
+    function clearDemoUser(){ localStorage.removeItem(DEMO_KEY); }
+
+    function showToast(msg, ms=2600){
+      let t = document.getElementById('myf_toast');
+      if(!t){ t = document.createElement('div'); t.id='myf_toast'; document.body.appendChild(t); }
+      t.textContent = msg;
+      t.style.opacity = '1';
+      clearTimeout(t._hid);
+      t._hid = setTimeout(()=>{ t.style.opacity = '0'; }, ms);
+    }
+
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+
+    // attempt to import firebase config and auth
+    try {
+      // LOAD FROM REPO ROOT (not /common/)
+      const cfg = await import('./firebase-config.js'); // expects export { auth }
+      fbAuth = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
+
+      auth = cfg.auth;
+      onAuthStateChanged = fbAuth.onAuthStateChanged;
+      signInWithPopup = fbAuth.signInWithPopup;
+      signInWithRedirect = fbAuth.signInWithRedirect;
+      signOut = fbAuth.signOut;
+      GoogleAuthProvider = fbAuth.GoogleAuthProvider;
+
+      provider = new GoogleAuthProvider();
+      firebaseAvailable = true;
+      console.log('coaching page: Firebase auth loaded.');
+    } catch (err) {
+      console.warn('coaching page: Firebase not loaded — demo fallback active.', err);
+      firebaseAvailable = false;
+    }
+
+    // render header auth UI (only Google when logged out)
+    function renderAuthUI(user){
+      if(!authContainer) return;
+      if(user){
+        const display = (user.displayName && user.displayName.trim()) ? user.displayName : (user.email || 'User');
+        authContainer.innerHTML = `
+          <div id="headerUser" class="auth-user" title="Account">👋 ${escapeHtml(display)}</div>
+          <button id="headerLogoutBtn" class="auth-logout">Logout</button>
+        `;
+        const logoutBtn = document.getElementById('headerLogoutBtn');
+        if(logoutBtn) logoutBtn.addEventListener('click', async ()=> {
+          if(firebaseAvailable){
+            try { await signOut(auth); showToast('Logged out'); } catch(e){ console.warn('Sign out failed', e); showToast('Logout failed'); }
+          } else {
+            clearDemoUser();
+            renderAuthUI(null);
+            if(privateContent) privateContent.style.display = 'none';
+            if(blockedHint) blockedHint.style.display = 'block';
+            showToast('Demo: logged out');
+          }
+          renderAuthUI(null);
+        });
+      } else {
+        authContainer.innerHTML = `<button id="headerGoogleBtn" class="auth-btn" title="Sign in with Google">Sign in with Google</button>`;
+        document.getElementById('headerGoogleBtn')?.addEventListener('click', trySignIn);
+      }
+    }
+
+    // popup-first Google sign-in with redirect fallback
+    async function trySignIn(){
+      if(!firebaseAvailable){
+        // demo prompt fallback
+        const email = prompt('Firebase not configured locally. Enter an email to demo sign-in (e.g. you@demo.com):');
+        if(!email) return;
+        setDemoUser({ email, displayName: email.split('@')[0], demo: true });
+        renderAuthUI({ email, displayName: email.split('@')[0] });
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+        showToast('Demo signed in as ' + email.split('@')[0]);
+        return;
+      }
+
+      try {
+        await signInWithPopup(auth, provider);
+        // onAuthStateChanged will update UI
+      } catch (err) {
+        console.warn('Popup sign-in error', err);
+        const code = (err && (err.code || '')).toString();
+        if(code.includes('popup-blocked') || code.includes('popup_closed_by_user') || code.includes('auth/popup-blocked') || code.includes('auth/popup-closed-by-user')){
+          // fallback to redirect
+          try {
+            await signInWithRedirect(auth, provider);
+          } catch (re) {
+            console.error('Redirect fallback failed', re);
+            alert('Sign-in failed. Please try again.');
+          }
+        } else {
+          alert('Google sign-in failed: ' + (err.message || err.code || 'error'));
+        }
+      }
+    }
+
+    // attach blocked/demo button handlers with event delegation (works if UI is re-rendered)
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      if(!target) return;
+      if(target.matches('#blockedGoogleBtn') || target.closest && target.closest('#blockedGoogleBtn')){
+        trySignIn();
+      }
+      if(target.matches('#demoBtn') || target.closest && target.closest('#demoBtn')){
+        const email = prompt('Demo sign-in: enter an email (e.g. you@demo.com):');
+        if(!email) return;
+        setDemoUser({ email, displayName: email.split('@')[0], demo: true });
+        renderAuthUI({ email, displayName: email.split('@')[0] });
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+        showToast('Demo signed in as ' + email.split('@')[0]);
+      }
     });
+
+    // requireLogin used by gated links/buttons
+    function requireLogin(message, target){
+      const current = (firebaseAvailable ? auth.currentUser : getDemoUser());
+      if(current){
+        if(firebaseAvailable && !current.emailVerified){
+          alert('Please verify your email before accessing this feature. Check your inbox.');
+          return;
+        }
+        if(typeof target === 'string' && target.startsWith('#')){
+          const el = document.querySelector(target);
+          if(el){ el.scrollIntoView({ behavior: 'smooth' }); return; }
+        }
+        if(target){ window.location.href = target; return; }
+        if(message) alert(message);
+        return;
+      }
+      // not signed -> start sign-in
+      if(message) showToast(message);
+      trySignIn();
+    }
+
+    // expose requireLogin globally (so existing onclicks still work)
+    window.requireLogin = requireLogin;
+
+    // show/hide protected content based on auth state
+    function showBlockedState(){
+      if(privateContent) privateContent.style.display = 'none';
+      if(blockedHint) blockedHint.style.display = 'block';
+    }
+
+    if(firebaseAvailable && onAuthStateChanged && auth){
+      onAuthStateChanged(auth, user => {
+        if(user && user.emailVerified){
+          renderAuthUI(user);
+          if(privateContent) privateContent.style.display = 'block';
+          if(blockedHint) blockedHint.style.display = 'none';
+        } else if(user && !user.emailVerified){
+          renderAuthUI(user);
+          if(privateContent) privateContent.style.display = 'none';
+          if(blockedHint) blockedHint.style.display = 'block';
+          if(blockedHint) blockedHint.innerHTML = '<p style="font-size:1.05rem;color:#444">Please verify your account email to view this page. Check your inbox for the verification message.</p><div style="margin-top:14px;"><button id="blockedGoogleBtn" class="big-button" style="background:#4285F4;">Sign in with Google</button><button id="demoBtn" class="big-button" style="background:#9ca3af;margin-left:10px;">Demo sign-in</button></div>';
+        } else {
+          renderAuthUI(null);
+          showBlockedState();
+        }
+      });
+    } else {
+      // demo fallback mode
+      const u = getDemoUser();
+      if(u){
+        renderAuthUI(u);
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+      } else {
+        renderAuthUI(null);
+        showBlockedState();
+      }
+    }
+
+    // expose logout for console usage
+    window.doLogout = async ()=> {
+      if(firebaseAvailable && signOut && auth){
+        try{ await signOut(auth); showToast('Logged out'); } catch(e){ console.warn('logout failed', e); showToast('Logout failed'); }
+      } else {
+        clearDemoUser();
+        renderAuthUI(null);
+        if(privateContent) privateContent.style.display = 'none';
+        if(blockedHint) blockedHint.style.display = 'block';
+        showToast('Demo: logged out');
+      }
+    };
+  })();
   </script>
 </body>
 </html>
-
