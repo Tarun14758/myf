@@ -20,6 +20,7 @@
       padding: 40px 20px;
       text-align: center;
       animation: fadeInDown 1s ease;
+      position: relative; /* for auth widget */
     }
 
     @keyframes fadeInDown {
@@ -94,12 +95,40 @@
     }
 
     footer { background: #0d1b2a; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px; }
+
+    /* auth widget container in header (top-right) */
+    #authContainer {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 2000;
+    }
+    .auth-btn { background: #ffcc70; color: #0d1b2a; padding: 8px 12px; border-radius: 20px; border: none; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .auth-user { color:#fff; font-weight:700; padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); cursor:pointer }
+    .auth-logout { background:#e5533d; color:#fff; padding:6px 10px; border-radius:8px; border:none; font-weight:700; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+    /* blocked hint */
+    #blockedHint { padding: 30px; display: none; text-align:center; }
+
+    @media (max-width: 768px) {
+      nav ul li { display: block; margin: 10px 0; }
+    }
+    @media (max-width: 520px) {
+      .modal{ width:92% }
+    }
   </style>
 </head>
 <body>
   <header>
     <img src="logo.png" alt="DYF Logo" class="logo" />
     <h1>Career Courses After Class 10</h1>
+
+    <!-- Auth widget container (populated by script) -->
+    <div id="authContainer" aria-live="polite"></div>
+
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -110,85 +139,263 @@
   </header>
 
   <main>
-    <section>
-      <h2>🛠️ ITI (Industrial Training Institute)</h2>
-      <p><strong>Duration:</strong> 6 months – 2 years</p>
-      <p><strong>Popular Trades:</strong> Electrician, Fitter, Welder, Mechanic</p>
-      <p><strong>Best Institutes:</strong> Government ITI Colleges across India</p>
-      <p><strong>Career:</strong> Technician, Mechanic, Electrician</p>
-      <a href="https://www.ncvtmis.gov.in/" class="course-btn" target="_blank">🔗 Visit NCVT Official Website</a>
-    </section>
+    <!-- protected content wrapper -->
+    <div id="privateContent" style="display:none;">
+      <section>
+        <h2>🛠️ ITI (Industrial Training Institute)</h2>
+        <p><strong>Duration:</strong> 6 months – 2 years</p>
+        <p><strong>Popular Trades:</strong> Electrician, Fitter, Welder, Mechanic</p>
+        <p><strong>Best Institutes:</strong> Government ITI Colleges across India</p>
+        <p><strong>Career:</strong> Technician, Mechanic, Electrician</p>
+        <a href="https://www.ncvtmis.gov.in/" class="course-btn" target="_blank" rel="noopener">🔗 Visit NCVT Official Website</a>
+      </section>
 
-    <section>
-      <h2>💻 Diploma in Computer Applications</h2>
-      <p><strong>Duration:</strong> 6 months – 1 year</p>
-      <p><strong>Skills Learned:</strong> MS Office, Tally, Photoshop, Basic Programming</p>
-      <p><strong>Institutes:</strong> NIIT, Aptech, Local Computer Training Centers</p>
-      <p><strong>Career:</strong> Data Entry, Office Assistant, Junior Programmer</p>
-      <a href="https://www.niit.com/" class="course-btn" target="_blank">💻 Explore NIIT Programs</a>
-    </section>
+      <section>
+        <h2>💻 Diploma in Computer Applications</h2>
+        <p><strong>Duration:</strong> 6 months – 1 year</p>
+        <p><strong>Skills Learned:</strong> MS Office, Tally, Photoshop, Basic Programming</p>
+        <p><strong>Institutes:</strong> NIIT, Aptech, Local Computer Training Centers</p>
+        <p><strong>Career:</strong> Data Entry, Office Assistant, Junior Programmer</p>
+        <a href="https://www.niit.com/" class="course-btn" target="_blank" rel="noopener">💻 Explore NIIT Programs</a>
+      </section>
 
-    <section>
-      <h2>🎨 Graphic Design & Animation</h2>
-      <p><strong>Duration:</strong> 1 – 2 years</p>
-      <p><strong>Skills Learned:</strong> Photoshop, Illustrator, After Effects, 3D Animation</p>
-      <p><strong>Institutes:</strong> Arena Animation, MAAC, Frameboxx</p>
-      <p><strong>Career:</strong> Graphic Designer, Animator, Video Editor</p>
-      <a href="https://www.arena-multimedia.com/in/en" class="course-btn" target="_blank">🎨 Visit Arena Animation</a>
-    </section>
+      <section>
+        <h2>🎨 Graphic Design & Animation</h2>
+        <p><strong>Duration:</strong> 1 – 2 years</p>
+        <p><strong>Skills Learned:</strong> Photoshop, Illustrator, After Effects, 3D Animation</p>
+        <p><strong>Institutes:</strong> Arena Animation, MAAC, Frameboxx</p>
+        <p><strong>Career:</strong> Graphic Designer, Animator, Video Editor</p>
+        <a href="https://www.arena-multimedia.com/in/en" class="course-btn" target="_blank" rel="noopener">🎨 Visit Arena Animation</a>
+      </section>
 
-    <section>
-      <h2>🏨 Hotel Management & Hospitality</h2>
-      <p><strong>Duration:</strong> 6 months – 3 years</p>
-      <p><strong>Skills Learned:</strong> Cooking, Hospitality, Event Management</p>
-      <p><strong>Institutes:</strong> IHM (Hotel Management Institutes), Local Hospitality Schools</p>
-      <p><strong>Career:</strong> Chef, Hotel Staff, Event Manager</p>
-      <a href="https://www.nchmct.org/" class="course-btn" target="_blank">🏨 Explore NCHMCT</a>
-    </section>
+      <section>
+        <h2>🏨 Hotel Management & Hospitality</h2>
+        <p><strong>Duration:</strong> 6 months – 3 years</p>
+        <p><strong>Skills Learned:</strong> Cooking, Hospitality, Event Management</p>
+        <p><strong>Institutes:</strong> IHM (Hotel Management Institutes), Local Hospitality Schools</p>
+        <p><strong>Career:</strong> Chef, Hotel Staff, Event Manager</p>
+        <a href="https://www.nchmct.org/" class="course-btn" target="_blank" rel="noopener">🏨 Explore NCHMCT</a>
+      </section>
 
-    <section>
-      <h2>🚚 Driving & Logistics Training</h2>
-      <p><strong>Duration:</strong> 3 – 6 months</p>
-      <p><strong>Skills Learned:</strong> Driving, Logistics Handling, Transport Rules</p>
-      <p><strong>Institutes:</strong> RTO Approved Driving Schools, Logistics Academies</p>
-      <p><strong>Career:</strong> Driver, Delivery Partner, Transport Supervisor</p>
-      <a href="https://www.marutisuzukidrivingschool.com/" class="course-btn" target="_blank">🚗 Maruti Suzuki Driving School</a>
-    </section>
+      <section>
+        <h2>🚚 Driving & Logistics Training</h2>
+        <p><strong>Duration:</strong> 3 – 6 months</p>
+        <p><strong>Skills Learned:</strong> Driving, Logistics Handling, Transport Rules</p>
+        <p><strong>Institutes:</strong> RTO Approved Driving Schools, Logistics Academies</p>
+        <p><strong>Career:</strong> Driver, Delivery Partner, Transport Supervisor</p>
+        <a href="https://www.marutisuzukidrivingschool.com/" class="course-btn" target="_blank" rel="noopener">🚗 Maruti Suzuki Driving School</a>
+      </section>
 
-    <section>
-      <h2>💊 Healthcare & Paramedical Courses</h2>
-      <p><strong>Duration:</strong> 6 months – 2 years</p>
-      <p><strong>Skills Learned:</strong> Nursing, Lab Assistance, Pharmacy</p>
-      <p><strong>Institutes:</strong> AIIMS, Local Paramedical Colleges</p>
-      <p><strong>Career:</strong> Lab Assistant, Nurse, Pharmacy Assistant</p>
-      <a href="https://www.aiims.edu/" class="course-btn" target="_blank">💊 Explore AIIMS Paramedical</a>
-    </section>
+      <section>
+        <h2>💊 Healthcare & Paramedical Courses</h2>
+        <p><strong>Duration:</strong> 6 months – 2 years</p>
+        <p><strong>Skills Learned:</strong> Nursing, Lab Assistance, Pharmacy</p>
+        <p><strong>Institutes:</strong> AIIMS, Local Paramedical Colleges</p>
+        <p><strong>Career:</strong> Lab Assistant, Nurse, Pharmacy Assistant</p>
+        <a href="https://www.aiims.edu/" class="course-btn" target="_blank" rel="noopener">💊 Explore AIIMS Paramedical</a>
+      </section>
 
-    <section>
-      <h2>📹 Digital Marketing</h2>
-      <p><strong>Duration:</strong> 6 months – 1 year</p>
-      <p><strong>Skills Learned:</strong> SEO, Social Media Marketing, Content Creation</p>
-      <p><strong>Institutes:</strong> Google Digital Garage, Udemy, Coursera</p>
-      <p><strong>Career:</strong> Social Media Manager, SEO Analyst, Content Creator</p>
-      <a href="https://learndigital.withgoogle.com/digitalgarage" class="course-btn" target="_blank">📱 Learn with Google Digital Garage</a>
-    </section>
+      <section>
+        <h2>📹 Digital Marketing</h2>
+        <p><strong>Duration:</strong> 6 months – 1 year</p>
+        <p><strong>Skills Learned:</strong> SEO, Social Media Marketing, Content Creation</p>
+        <p><strong>Institutes:</strong> Google Digital Garage, Udemy, Coursera</p>
+        <p><strong>Career:</strong> Social Media Manager, SEO Analyst, Content Creator</p>
+        <a href="https://learndigital.withgoogle.com/digitalgarage" class="course-btn" target="_blank" rel="noopener">📱 Learn with Google Digital Garage</a>
+      </section>
 
-    <section>
-      <h2>✨ More Courses Coming Soon...</h2>
-      <p>We are updating with more options like <strong>Photography, Fashion Designing, Agriculture Training</strong> and more! 🚀</p>
-    </section>
+      <section>
+        <h2>✨ More Courses Coming Soon...</h2>
+        <p>We are updating with more options like <strong>Photography, Fashion Designing, Agriculture Training</strong> and more! 🚀</p>
+      </section>
 
-    <!-- NEW SALARY SECTION -->
-    <section>
-      <h2>💰 Salary Insights</h2>
-      <p>We are working on providing detailed information about <strong>average salaries</strong> for each career option after Class 10. 💼</p>
-      <p><em>Stay tuned! Salary details for these fields are coming soon... ⏳</em></p>
-    </section>
+      <section>
+        <h2>💰 Salary Insights</h2>
+        <p>We are working on providing detailed information about <strong>average salaries</strong> for each career option after Class 10. 💼</p>
+        <p><em>Stay tuned! Salary details for these fields are coming soon... ⏳</em></p>
+      </section>
+    </div>
+
+    <!-- blocked hint (shows when user not allowed) -->
+    <div id="blockedHint" style="display:none">
+      <p style="font-size:1.1rem; color:#444">This content is available to signed-in users only. Please sign in with Google to view the full page.</p>
+      <div style="margin-top:14px;">
+        <button id="googleFallbackBtn" class="auth-btn" style="margin-right:8px;">Sign in with Google</button>
+        <button id="demoBtn" class="auth-btn" style="background:#9ca3af;">Demo sign-in</button>
+      </div>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 DYF - Make You Better. All rights reserved.</p>
   </footer>
+
+  <!-- GOOGLE-ONLY AUTH SCRIPT -->
+  <script type="module">
+  (async ()=> {
+    // Attempt to load Firebase auth; otherwise use demo fallback
+    let firebaseAvailable = false;
+    let auth = null;
+    let fbAuth = null;
+    let provider = null;
+    let onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut, GoogleAuthProvider;
+
+    // UI refs
+    const authContainer = document.getElementById('authContainer');
+    const privateContent = document.getElementById('privateContent');
+    const blockedHint = document.getElementById('blockedHint');
+    const googleFallbackBtn = document.getElementById('googleFallbackBtn');
+    const demoBtn = document.getElementById('demoBtn');
+
+    // demo localStorage fallback helpers
+    const DEMO_KEY = 'myf_demo_user';
+    function getDemoUser(){ try { return JSON.parse(localStorage.getItem(DEMO_KEY)); } catch(e){ return null; } }
+    function setDemoUser(u){ localStorage.setItem(DEMO_KEY, JSON.stringify(u)); }
+    function clearDemoUser(){ localStorage.removeItem(DEMO_KEY); }
+
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+
+    // attempt to import your firebase-config.js from repo root (exports `auth`)
+    try {
+      const cfg = await import('./firebase-config.js'); // <-- updated path
+      fbAuth = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
+
+      auth = cfg.auth;
+      onAuthStateChanged = fbAuth.onAuthStateChanged;
+      signInWithPopup = fbAuth.signInWithPopup;
+      signInWithRedirect = fbAuth.signInWithRedirect;
+      signOut = fbAuth.signOut;
+      GoogleAuthProvider = fbAuth.GoogleAuthProvider;
+
+      provider = new GoogleAuthProvider();
+      firebaseAvailable = true;
+      console.log('courses page: Firebase auth loaded.');
+    } catch (err) {
+      console.warn('courses page: Firebase not loaded — demo fallback active.', err);
+      firebaseAvailable = false;
+    }
+
+    // render header auth UI: **only Google button** when logged out
+    function renderAuthUI(user){
+      if(!authContainer) return;
+      if(user){
+        const display = (user.displayName && user.displayName.trim()) ? user.displayName : (user.email || 'User');
+        authContainer.innerHTML = `
+          <div id="headerUser" class="auth-user" title="Open account menu">👋 ${escapeHtml(display)}</div>
+          <button id="headerLogoutBtn" class="auth-logout">Logout</button>
+        `;
+        const logoutBtn = document.getElementById('headerLogoutBtn');
+        if(logoutBtn) logoutBtn.addEventListener('click', async ()=>{
+          if(firebaseAvailable){
+            try { await signOut(auth); } catch(e){ console.warn('Sign out failed', e); }
+          } else {
+            clearDemoUser();
+            renderAuthUI(null);
+            if(privateContent) privateContent.style.display = 'none';
+            if(blockedHint) blockedHint.style.display = 'block';
+          }
+        });
+      } else {
+        authContainer.innerHTML = `<button id="headerGoogleBtn" class="auth-btn" title="Sign in with Google">Sign in with Google</button>`;
+        const headerGoogleBtn = document.getElementById('headerGoogleBtn');
+        if(headerGoogleBtn) headerGoogleBtn.addEventListener('click', trySignIn);
+      }
+    }
+
+    // popup-first Google sign-in with redirect fallback
+    async function trySignIn(){
+      if(!firebaseAvailable){
+        // demo sign-in fallback
+        const email = prompt('Firebase not configured locally. Enter an email to demo sign-in (e.g. you@demo.com):');
+        if(!email) return;
+        setDemoUser({ email, displayName: email.split('@')[0], demo: true });
+        renderAuthUI({ email, displayName: email.split('@')[0] });
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+        return;
+      }
+
+      try {
+        await signInWithPopup(auth, provider);
+        // auth state listener will handle UI
+      } catch (err) {
+        console.warn('Popup sign-in error', err);
+        const code = (err && (err.code || '')).toString();
+        if(code.includes('popup-blocked') || code.includes('popup_closed_by_user') || code.includes('auth/popup-blocked') || code.includes('auth/popup-closed-by-user')){
+          try {
+            await signInWithRedirect(auth, provider);
+          } catch (re) {
+            console.error('Redirect fallback failed', re);
+            alert('Sign-in failed. Please try again.');
+          }
+        } else {
+          alert('Google sign-in failed: ' + (err.message || err.code || 'error'));
+        }
+      }
+    }
+
+    // page demo button
+    if(demoBtn) demoBtn.addEventListener('click', () => {
+      const email = prompt('Demo sign-in: enter an email (e.g. you@demo.com):');
+      if(!email) return;
+      setDemoUser({ email, displayName: email.split('@')[0], demo: true });
+      renderAuthUI({ email, displayName: email.split('@')[0] });
+      if(privateContent) privateContent.style.display = 'block';
+      if(blockedHint) blockedHint.style.display = 'none';
+    });
+
+    if(googleFallbackBtn) googleFallbackBtn.addEventListener('click', trySignIn);
+
+    // helper: show blocked state
+    function showBlockedState(){
+      if(privateContent) privateContent.style.display = 'none';
+      if(blockedHint) blockedHint.style.display = 'block';
+    }
+
+    // auth state handling
+    if(firebaseAvailable && onAuthStateChanged && auth){
+      onAuthStateChanged(auth, user => {
+        // allow users where emailVerified === true OR not available/undefined
+        if(user && (user.emailVerified === undefined || user.emailVerified === true)){
+          renderAuthUI(user);
+          if(privateContent) privateContent.style.display = 'block';
+          if(blockedHint) blockedHint.style.display = 'none';
+        } else if(user && !user.emailVerified){
+          renderAuthUI(user);
+          if(privateContent) privateContent.style.display = 'none';
+          if(blockedHint) blockedHint.style.display = 'block';
+          if(blockedHint) blockedHint.innerHTML = '<p style="font-size:1.05rem;color:#444">Please verify your account email to view this page. Check your inbox for the verification message.</p>';
+        } else {
+          renderAuthUI(null);
+          showBlockedState();
+        }
+      });
+    } else {
+      // demo fallback: if demo user stored, show content
+      const u = getDemoUser();
+      if(u){
+        renderAuthUI(u);
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+      } else {
+        renderAuthUI(null);
+        showBlockedState();
+      }
+    }
+
+    // expose for console use
+    window.trySignIn = trySignIn;
+    window.doLogout = async ()=> {
+      if(firebaseAvailable && signOut && auth){
+        try{ await signOut(auth); } catch(e){ console.warn('logout failed', e); }
+      } else {
+        clearDemoUser();
+        renderAuthUI(null);
+        if(privateContent) privateContent.style.display = 'none';
+        if(blockedHint) blockedHint.style.display = 'block';
+      }
+    };
+  })();
+  </script>
 </body>
 </html>
-
