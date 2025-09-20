@@ -55,6 +55,15 @@
     .auth-user { color:#fff; background:transparent; font-weight:700; padding:6px 10px; border-radius:20px; border:1px solid rgba(255,255,255,0.12) }
     .auth-logout { background:#e5533d; color:#fff; padding:8px 10px; border-radius:12px; border:none; font-weight:700; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
 
+    /* disabled styles (non-clickable) */
+    .disabled {
+      opacity: 0.55;
+      pointer-events: none;
+      cursor: not-allowed !important;
+    }
+    .big-button[aria-disabled="true"] { opacity: 0.55; pointer-events: none; cursor: not-allowed; }
+    .subject.disabled { opacity: 0.6; pointer-events: none; cursor: not-allowed; }
+
     /* toast */
     #myf_toast { position: fixed; right: 18px; bottom: 18px; background:#111; color:#fff; padding:10px 14px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.2); z-index:1600; opacity:0; transition: opacity .22s ease; }
     #myf_toast.show { opacity: 1; }
@@ -96,6 +105,7 @@
       <h2>Options After 10th Class</h2>
       <p>Explore career opportunities after 10th:</p>
       <div style="text-align:center;">
+        <!-- ONLY THIS BUTTON IS CLICKABLE -->
         <button class="big-button" onclick="requireLogin(null,'10firstpage.html')">Explore After 10th Options</button>
       </div>
     </section>
@@ -104,8 +114,11 @@
       <h2>Try Our Tools</h2>
       <p>Interactive features to help you plan your future:</p>
       <div style="text-align:center; margin-top: 20px;">
-        <button class="big-button" onclick="requireLogin('Please login to use the Budget Calculator','budget.html')">💰 Budget Calculator</button>
-        <button class="big-button" style=" margin-left: 15px;" onclick="requireLogin('Please login to use AI tools','ai.html')">🤖 AI Coming Soon</button>
+        <!-- Disabled: Budget Calculator -->
+        <button class="big-button" aria-disabled="true" title="Coming soon">💰 Budget Calculator</button>
+
+        <!-- Disabled: AI tools -->
+        <button class="big-button" style=" margin-left: 15px;" aria-disabled="true" title="Coming soon">🤖 AI Coming Soon</button>
       </div>
     </section>
 
@@ -114,15 +127,16 @@
       <br>
       <h2>Available Streams</h2>
       <div class="subjects">
-        <div class="subject" onclick="requireLogin(null,'streams/science.html')" data-target="streams/science.html">
+        <!-- Disabled subject tiles: removed onclick/data-target and marked disabled -->
+        <div class="subject disabled" role="button" aria-disabled="true" title="Available soon">
           <img src="question mark.avif" alt="Science Stream">
           <p>Science</p>
         </div>
-        <div class="subject" onclick="requireLogin(null,'streams/arts.html')" data-target="streams/arts.html">
+        <div class="subject disabled" role="button" aria-disabled="true" title="Available soon">
           <img src="question mark.avif" alt="Arts Stream">
           <p>Arts</p>
         </div>
-        <div class="subject" onclick="requireLogin(null,'streams/commerce.html')" data-target="streams/commerce.html">
+        <div class="subject disabled" role="button" aria-disabled="true" title="Available soon">
           <img src="question mark.avif" alt="Commerce Stream">
           <p>Commerce</p>
         </div>
@@ -255,7 +269,7 @@
     }
   }
 
-  // requireLogin: used by gated links/buttons
+  // requireLogin: used by gated links/buttons (only Explore After 10th uses it now)
   async function requireLogin(message, target){
     const ok = await loadFirebaseAuth();
     if(!ok){
