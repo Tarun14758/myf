@@ -21,6 +21,7 @@
       padding: 40px 20px;
       text-align: center;
       animation: fadeInDown 1s ease;
+      position: relative; /* for auth widget */
     }
 
     @keyframes fadeInDown {
@@ -55,7 +56,6 @@
 
     nav ul li {
       display: inline-block;
-
       margin: 0 15px;
     }
 
@@ -83,7 +83,7 @@
       border-radius: 12px;
       padding: 40px 30px;
       margin-bottom: 40px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* softer shadow like homepage */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
       transition: all 0.6s ease-out;
     }
 
@@ -135,6 +135,7 @@
       margin-top: 25px;
       transition: background-color 0.3s, transform 0.2s;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .big-button:hover {
@@ -160,6 +161,26 @@
         width: 90%;
       }
     }
+
+    /* auth widget container in header (top-right) */
+    #authContainer {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 2000;
+    }
+    .auth-btn { background: #ffcc70; color: #0d1b2a; padding: 8px 12px; border-radius: 20px; border: none; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .auth-user { color:#fff; font-weight:700; padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); cursor:pointer }
+    .auth-logout { background:#e5533d; color:#fff; padding:6px 10px; border-radius:8px; border:none; font-weight:700; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+    /* blocked hint */
+    #blockedHint { padding: 30px; display: none; text-align:center; }
+
+    /* small toast */
+    #myf_toast{position:fixed;right:18px;bottom:18px;background:#111;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:1600;opacity:0;transition:opacity .25s}
   </style>
 </head>
 <body>
@@ -167,6 +188,10 @@
     <!-- kept your exact logo path + bounce -->
     <img src="logo.png"  alt="DYF Logo" class="logo" />
     <h1>Job Opportunities - More </h1>
+
+    <!-- Auth widget (populated by script) -->
+    <div id="authContainer" aria-live="polite"></div>
+
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -177,141 +202,127 @@
   </header>
 
   <main>
-    <section>
-      <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 0;">
-        
-        After completing Class 10, there are several job opportunities and career paths you can explore. 🎓💼<br>
-        While most high-paying jobs require higher education, there are still many options for students who want to start working early.
-        
-      </p>
-    </section>
+    <!-- protected content wrapper -->
+    <div id="privateContent" style="display:none;">
+      <section>
+        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 0;">
+          After completing Class 10, there are several job opportunities and career paths you can explore. 🎓💼<br>
+          While most high-paying jobs require higher education, there are still many options for students who want to start working early.
+        </p>
+      </section>
 
-    <section id="government-jobs">
-      <h2>1. 🏛️ Government Jobs </h2>
-      <!-- kept your local path -->
-      <img src="first.png" alt="Government office" class="mission-image" />
-      <strong>
-      <p>You can apply for various government jobs that require only a Class 10 qualification:</p>
-      <ul>
-        
-        <li>🪖 Indian Army – Soldier, Tradesman</li>
-        <li>🚆 Railways – RRB Group D, Apprentice</li>
-        <li>👮 Police & Forces – CRPF, BSF, Constable</li>
-        <li>🗂️ SSC MTS – Multi-Tasking Staff</li>
-        <li>📬 Post Office – Postman, Mail Guard</li>
-        </strong>
-      </ul>
-      <p><strong>Tip:</strong> 📘 Most govt jobs require entrance exams.</p>
-    </section>
+      <section id="government-jobs">
+        <h2>1. 🏛️ Government Jobs </h2>
+        <img src="first.png" alt="Government office" class="mission-image" />
+        <p>You can apply for various government jobs that require only a Class 10 qualification:</p>
+        <ul>
+          <li>🪖 Indian Army – Soldier, Tradesman</li>
+          <li>🚆 Railways – RRB Group D, Apprentice</li>
+          <li>👮 Police & Forces – CRPF, BSF, Constable</li>
+          <li>🗂️ SSC MTS – Multi-Tasking Staff</li>
+          <li>📬 Post Office – Postman, Mail Guard</li>
+        </ul>
+        <p><strong>Tip:</strong> 📘 Most govt jobs require entrance exams.</p>
+      </section>
 
-    <section id="private-sector">
-      <h2>2. 💼 Private Sector Jobs</h2>
-      <!-- kept your local path -->
-      <img src="second.png" alt="Office workspace" class="mission-image" />
-      <strong>
+      <section id="private-sector">
+        <h2>2. 💼 Private Sector Jobs</h2>
+        <img src="second.png" alt="Office workspace" class="mission-image" />
+        <p>Private companies hire 10th pass candidates for roles like:</p>
+        <ul>
+          <li>🧑‍💻 Data Entry Operator</li>
+          <li>📞 Call Center / BPO Executive</li>
+          <li>🛍️ Sales & Marketing Executive</li>
+          <li>📦 Delivery Partner (Amazon, Zomato)</li>
+          <li>🔌 Technician / Electrician (via ITI)</li>
+          <li>🧾 Receptionist & Office Assistant</li>
+        </ul>
+      </section>
 
-      <p>Private companies hire 10th pass candidates for roles like:</p>
-      </strong>
-      <ul>
-        <strong>
-        <li>🧑‍💻 Data Entry Operator</li>
-        <li>📞 Call Center / BPO Executive</li>
-        <li>🛍️ Sales & Marketing Executive</li>
-        <li>📦 Delivery Partner (Amazon, Zomato)</li>
-        <li>🔌 Technician / Electrician (via ITI)</li>
-        <li>🧾 Receptionist & Office Assistant</li>
-        <strong>
-      </ul>
-    </section>
+      <section id="skilled-trades">
+        <h2>3. 🛠️ Skilled Trades & Vocational Careers</h2>
+        <img src="third.png" alt="Workshop" class="mission-image" />
+        <p>If you prefer hands-on work, you can become a:</p>
+        <ul>
+          <li>🔧 Mechanic / Electrician / Plumber</li>
+          <li>📱 Mobile Repair Technician</li>
+          <li>🎨 Graphic Designer</li>
+          <li>📸 Photographer / Video Editor</li>
+          <li>👗 Tailor / Fashion Designer</li>
+        </ul>
+      </section>
 
-    <section id="skilled-trades">
-      <h2>3. 🛠️ Skilled Trades & Vocational Careers</h2>
-      <!-- kept your local path -->
-      <img src="third.png" alt="Workshop" class="mission-image" />
-      <strong>
-      <p>If you prefer hands-on work, you can become a:</p>
-      <ul>
-        
-        <li>🔧 Mechanic / Electrician / Plumber</li>
-        <li>📱 Mobile Repair Technician</li>
-        <li>🎨 Graphic Designer</li>
-        <li>📸 Photographer / Video Editor</li>
-        <li>👗 Tailor / Fashion Designer</li>
-        </strong>
-      </ul>
-    </section>
+      <section id="online-jobs">
+        <h2>4. 🌐 Online & Freelance Jobs</h2>
+        <img src="fourth.png" alt="Freelancer" class="mission-image" />
+        <p>With basic computer skills, you can work online:</p>
+        <ul>
+          <li>🎥 YouTube Creator / Blogging</li>
+          <li>✍️ Freelance Writing</li>
+          <li>🖌️ Graphic Design & Editing</li>
+          <li>🛒 Affiliate Marketing / Dropshipping</li>
+          <li>💻 Coding & Web Dev (learn online)</li>
+        </ul>
+      </section>
 
-    <section id="online-jobs">
-      <h2>4. 🌐 Online & Freelance Jobs</h2>
-      <!-- kept your local path -->
-      <img src="fourth.png" alt="Freelancer" class="mission-image" />
-      <p>With basic computer skills, you can work online:</p>
-      <ul>
-        <strong>
-        <li>🎥 YouTube Creator / Blogging</li>
-        <li>✍️ Freelance Writing</li>
-        <li>🖌️ Graphic Design & Editing</li>
-        <li>🛒 Affiliate Marketing / Dropshipping</li>
-        <li>💻 Coding & Web Dev (learn online)</li>
-        </strong>
-      </ul>
-    </section>
+      <section id="entrepreneurship">
+        <h2>5. 🚀 Entrepreneurship & Business</h2>
+        <img src="fifth.png" alt="Small Business" class="mission-image" />
+        <p>If you're business-minded, start your own:</p>
+        <ul>
+          <li>🛍️ Shop / Retail Business</li>
+          <li>🥗 Tiffin / Catering Service</li>
+          <li>🧵 Handicrafts & Handmade Items</li>
+          <li>📷 Photography / Event Work</li>
+        </ul>
+      </section>
 
-    <section id="entrepreneurship">
-      <h2>5. 🚀 Entrepreneurship & Business</h2>
-      <!-- kept your local path -->
-      <img src="fifth.png" alt="Small Business" class="mission-image" />
-      <p>If you're business-minded, start your own:</p>
-      <ul>
-        <strong>
-        <li>🛍️ Shop / Retail Business</li>
-        <li>🥗 Tiffin / Catering Service</li>
-        <li>🧵 Handicrafts & Handmade Items</li>
-        <li>📷 Photography / Event Work</li>
-        </strong>
-      </ul>
-    </section>
+      <section id="additional-options">
+        <h2>6. 🌿 Other Career Options</h2>
+        <img src="sixth.png"alt="Additional options" class="mission-image" />
+        <p>There are several other practical paths you can explore right after Class 10:</p>
+        <ul>
+          <li>🛠️ Apprenticeships & Training Programs — ITI, Industrial apprenticeships</li>
+          <li>🏥 Healthcare Support Jobs — Hospital Attendant, Pharmacy Assistant</li>
+          <li>🏨 Hospitality & Travel — Hotel Staff, Café/Restaurant Crew</li>
+          <li>🎨 Creative & Skill-Based Jobs — Music/Dance Teacher, Gym/Fitness Trainer</li>
+          <li>🚚 Driving & Transport — Driver (with license)</li>
+          <li>🌾 Agriculture & Rural Jobs — Farming, Agri-entrepreneurship</li>
+        </ul>
+      </section>
 
-    <!-- NEW: Additional options section (added as requested) -->
-    <section id="additional-options">
-      <h2>6. 🌿 Other Career Options</h2>
-      <!-- reusing an existing local image to keep paths consistent -->
-      <img src="sixth.png"alt="Additional options" class="mission-image" />
-      <p>There are several other practical paths you can explore right after Class 10:</p>
-      <ul>
-        <strong>
-        <li>🛠️ Apprenticeships & Training Programs — ITI, Industrial apprenticeships (Electrician, Fitter, Welder, Mechanic)</li>
-        <li>🏥 Healthcare Support Jobs — Hospital Attendant, Pharmacy Assistant, Lab Assistant (short vocational courses)</li>
-        <li>🏨 Hospitality & Travel — Hotel Staff, Café/Restaurant Crew, Ground Staff (with short hospitality courses)</li>
-        <li>🎨 Creative & Skill-Based Jobs — Music/Dance Teacher, Tattoo/Mehendi Artist, Gym/Fitness Trainer (certifications where needed)</li>
-        <li>🚚 Driving & Transport — Driver (with license), Logistics & Transport Helper</li>
-        <li>🌾 Agriculture & Rural Jobs — Farming, Agri-entrepreneurship, Poultry/Dairy, Organic farming</li>
-        </strong>
-      </ul>
-    </section>
+      <!-- Links turned into gated buttons -->
+      <section style="text-align: center;">
+        <h2>🎓 BEST COLLEGE AND COACHING FOR UPPER OPTIONS!</h2>
+        <button class="big-button" onclick="requireLogin('Please login to view coaching','10classjobcourses.html')">Click Here To View Coaching</button>
+      </section>
 
-    <!-- Links (unchanged targets) -->
-    <section style="text-align: center;">
-      <h2>🎓BEST COLLEGE AND COACHING FOR UPPER OPTIONS!</h2>
-      <a href="10classjobcourses.html" class="big-button">Click Here To View Coaching</a>
-    </section>
+      <section style="text-align: center;">
+        <h2> 💲Find Salary Of These Fields !</h2>
+        <button class="big-button" onclick="requireLogin('Please login to view salary details','after10salary.html')">Click Here To Find Salary</button>
+      </section>
 
-    <section style="text-align: center;">
-      <h2> 💲Find Sallary Of These Fields !</h2>
-      <a href="after10salary.html" class="big-button">Click Here To Find Salary</a>
-    </section>
+      <section style="text-align: center;">
+        <h2>📚 Want to Explore Courses After Class 10?</h2>
+        <button class="big-button" onclick="requireLogin('Please login to view courses','after10lastoption.html')">Click Here To View Courses</button>
+      </section>
+    </div>
 
-    <section style="text-align: center;">
-      <h2>📚 Want to Explore Courses After Class 10?</h2>
-      <a href="after10lastoption.html" class="big-button">Click Here To View Courses</a>
-    </section>
+    <!-- blocked hint (shows when not signed in / not verified) -->
+    <div id="blockedHint" style="display:none">
+      <p style="font-size:1.1rem; color:#444; max-width:800px; margin:0 auto 12px">This content is available to signed-in users only. Please sign in with Google to view the full page.</p>
+      <div style="margin-top:14px;">
+        <button id="blockedGoogleBtn" class="big-button" style="background:#4285F4;border:none;">Sign in with Google</button>
+        <button id="demoBtn" class="big-button" style="background:#9ca3af;margin-left:10px;">Demo sign-in</button>
+      </div>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 DYF - Make You Better. All rights reserved.</p>
   </footer>
 
-  <!-- Kept your scroll-in animation script -->
+  <!-- simple scroll animation -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const sections = document.querySelectorAll('section');
@@ -332,10 +343,217 @@
       });
     });
   </script>
+
+  <!-- GOOGLE-ONLY AUTH SCRIPT (Firebase + demo fallback) -->
+  <script type="module">
+  (async ()=> {
+    // Try to load Firebase auth; otherwise demo fallback
+    let firebaseAvailable = false;
+    let auth = null;
+    let fbAuth = null;
+    let provider = null;
+    let onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut, GoogleAuthProvider;
+
+    // UI refs
+    const authContainer = document.getElementById('authContainer');
+    const privateContent = document.getElementById('privateContent');
+    const blockedHint = document.getElementById('blockedHint');
+    const demoBtn = document.getElementById('demoBtn');
+
+    // demo localStorage helpers
+    const DEMO_KEY = 'myf_demo_user';
+    function getDemoUser(){ try { return JSON.parse(localStorage.getItem(DEMO_KEY)); } catch(e){ return null; } }
+    function setDemoUser(u){ localStorage.setItem(DEMO_KEY, JSON.stringify(u)); }
+    function clearDemoUser(){ localStorage.removeItem(DEMO_KEY); }
+
+    function showToast(msg, ms=2600){
+      let t = document.getElementById('myf_toast');
+      if(!t){ t = document.createElement('div'); t.id='myf_toast'; document.body.appendChild(t); }
+      t.textContent = msg;
+      t.style.opacity = '1';
+      clearTimeout(t._hid);
+      t._hid = setTimeout(()=>{ t.style.opacity = '0'; }, ms);
+    }
+
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+
+    // attempt to import firebase config and auth
+    try {
+      // LOAD FROM REPO ROOT (not /common/)
+      const cfg = await import('./firebase-config.js'); // expects export { auth }
+      fbAuth = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
+
+      auth = cfg.auth;
+      onAuthStateChanged = fbAuth.onAuthStateChanged;
+      signInWithPopup = fbAuth.signInWithPopup;
+      signInWithRedirect = fbAuth.signInWithRedirect;
+      signOut = fbAuth.signOut;
+      GoogleAuthProvider = fbAuth.GoogleAuthProvider;
+
+      provider = new GoogleAuthProvider();
+      firebaseAvailable = true;
+      console.log('jobs page: Firebase auth loaded.');
+    } catch (err) {
+      console.warn('jobs page: Firebase not loaded — demo fallback active.', err);
+      firebaseAvailable = false;
+    }
+
+    // render header auth UI (only Google when logged out)
+    function renderAuthUI(user){
+      if(!authContainer) return;
+      if(user){
+        const display = (user.displayName && user.displayName.trim()) ? user.displayName : (user.email || 'User');
+        authContainer.innerHTML = `
+          <div id="headerUser" class="auth-user" title="Account">👋 ${escapeHtml(display)}</div>
+          <button id="headerLogoutBtn" class="auth-logout">Logout</button>
+        `;
+        const logoutBtn = document.getElementById('headerLogoutBtn');
+        if(logoutBtn) logoutBtn.addEventListener('click', async ()=> {
+          if(firebaseAvailable){
+            try { await signOut(auth); showToast('Logged out'); } catch(e){ console.warn('Sign out failed', e); showToast('Logout failed'); }
+          } else {
+            clearDemoUser();
+            renderAuthUI(null);
+            if(privateContent) privateContent.style.display = 'none';
+            if(blockedHint) blockedHint.style.display = 'block';
+            showToast('Demo: logged out');
+          }
+          renderAuthUI(null);
+        });
+      } else {
+        authContainer.innerHTML = `<button id="headerGoogleBtn" class="auth-btn" title="Sign in with Google">Sign in with Google</button>`;
+        // attach sign-in handler (query fresh element)
+        document.getElementById('headerGoogleBtn')?.addEventListener('click', trySignIn);
+      }
+    }
+
+    // popup-first Google sign-in with redirect fallback
+    async function trySignIn(){
+      if(!firebaseAvailable){
+        // demo prompt fallback
+        const email = prompt('Firebase not configured locally. Enter an email to demo sign-in (e.g. you@demo.com):');
+        if(!email) return;
+        setDemoUser({ email, displayName: email.split('@')[0], demo: true });
+        renderAuthUI({ email, displayName: email.split('@')[0] });
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+        showToast('Demo signed in as ' + email.split('@')[0]);
+        return;
+      }
+
+      try {
+        await signInWithPopup(auth, provider);
+        // onAuthStateChanged will update UI
+      } catch (err) {
+        console.warn('Popup sign-in error', err);
+        const code = (err && (err.code || '')).toString();
+        if(code.includes('popup-blocked') || code.includes('popup_closed_by_user') || code.includes('auth/popup-blocked') || code.includes('auth/popup-closed-by-user')){
+          // fallback to redirect
+          try {
+            await signInWithRedirect(auth, provider);
+          } catch (re) {
+            console.error('Redirect fallback failed', re);
+            alert('Sign-in failed. Please try again.');
+          }
+        } else {
+          alert('Google sign-in failed: ' + (err.message || err.code || 'error'));
+        }
+      }
+    }
+
+    // demo button wiring (page-level)
+    (function wireDemoButtons(){
+      document.addEventListener('click', (e)=>{
+        // handle demoBtn clicks even if button recreated later
+        if (e.target && (e.target.id === 'demoBtn' || e.target.closest && e.target.closest('#demoBtn'))) {
+          const email = prompt('Demo sign-in: enter an email (e.g. you@demo.com):');
+          if(!email) return;
+          setDemoUser({ email, displayName: email.split('@')[0], demo: true });
+          renderAuthUI({ email, displayName: email.split('@')[0] });
+          if(privateContent) privateContent.style.display = 'block';
+          if(blockedHint) blockedHint.style.display = 'none';
+          showToast('Demo signed in as ' + email.split('@')[0]);
+        }
+        // handle blockedGoogleBtn clicks (works whether created initially or recreated)
+        if (e.target && (e.target.id === 'blockedGoogleBtn' || e.target.closest && e.target.closest('#blockedGoogleBtn'))) {
+          trySignIn();
+        }
+      });
+    })();
+
+    // requireLogin used by gated buttons — triggers Google sign-in if not signed
+    function requireLogin(message, target){
+      const current = (firebaseAvailable ? auth.currentUser : getDemoUser());
+      if(current){
+        if(firebaseAvailable && !current.emailVerified){
+          alert('Please verify your email before accessing this feature. Check your inbox.');
+          return;
+        }
+        if(typeof target === 'string' && target.startsWith('#')){
+          const el = document.querySelector(target);
+          if(el){ el.scrollIntoView({ behavior: 'smooth' }); return; }
+        }
+        if(target){ window.location.href = target; return; }
+        if(message) alert(message);
+        return;
+      }
+      // not signed -> start sign-in
+      if(message) showToast(message);
+      trySignIn();
+    }
+
+    // expose requireLogin globally (so existing onclicks still work)
+    window.requireLogin = requireLogin;
+
+    // show/hide protected content based on auth state
+    function showBlockedState(){
+      if(privateContent) privateContent.style.display = 'none';
+      if(blockedHint) blockedHint.style.display = 'block';
+    }
+
+    if(firebaseAvailable && onAuthStateChanged && auth){
+      onAuthStateChanged(auth, user => {
+        if(user && user.emailVerified){
+          renderAuthUI(user);
+          if(privateContent) privateContent.style.display = 'block';
+          if(blockedHint) blockedHint.style.display = 'none';
+        } else if(user && !user.emailVerified){
+          renderAuthUI(user);
+          if(privateContent) privateContent.style.display = 'none';
+          if(blockedHint) blockedHint.style.display = 'block';
+          if(blockedHint) blockedHint.innerHTML = '<p style="font-size:1.05rem;color:#444">Please verify your account email to view this page. Check your inbox for the verification message.</p><div style="margin-top:14px;"><button id="blockedGoogleBtn" class="big-button" style="background:#4285F4;border:none;">Sign in with Google</button><button id="demoBtn" class="big-button" style="background:#9ca3af;margin-left:10px;">Demo sign-in</button></div>';
+          // no need to rebind: wired with delegated click listener above
+        } else {
+          renderAuthUI(null);
+          showBlockedState();
+        }
+      });
+    } else {
+      // demo fallback mode
+      const u = getDemoUser();
+      if(u){
+        renderAuthUI(u);
+        if(privateContent) privateContent.style.display = 'block';
+        if(blockedHint) blockedHint.style.display = 'none';
+      } else {
+        renderAuthUI(null);
+        showBlockedState();
+      }
+    }
+
+    // expose logout for console usage
+    window.doLogout = async ()=> {
+      if(firebaseAvailable && signOut && auth){
+        try{ await signOut(auth); showToast('Logged out'); } catch(e){ console.warn('logout failed', e); showToast('Logout failed'); }
+      } else {
+        clearDemoUser();
+        renderAuthUI(null);
+        if(privateContent) privateContent.style.display = 'none';
+        if(blockedHint) blockedHint.style.display = 'block';
+        showToast('Demo: logged out');
+      }
+    };
+  })();
+  </script>
 </body>
 </html>
-
-
-
-
-
