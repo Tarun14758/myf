@@ -4,90 +4,225 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DYF - Make You Better</title>
-
-  <!-- Google Analytics (gtag) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B61TT6VQJ6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-B61TT6VQJ6');
-  </script>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
   <style>
-    /* General Styles */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; background: #f4f9fb; color: #333; }
-    header { background: #0d1b2a; color: #fff; padding: 40px 20px; text-align: center; animation: fadeInDown 1s ease; position:relative; }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-    .logo { width: 150px; height: 150px; display: block; margin: 0 auto 10px; animation: bounce 0.7s infinite alternate; }
-    @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); } }
-    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; color: #ffcc70; }
-    nav ul { list-style: none; padding: 10px 0 0; }
-    nav ul li { display: inline-block; margin: 0 15px; }
-    nav ul li a { color: #80deea; font-weight: 600; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
-    nav ul li a:hover { color: #ffd166; }
-
-    main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-    section { background: #fff; border-radius: 12px; padding: 40px 30px; margin-bottom: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-    section h2 { font-size: 1.8rem; color: #007c91; margin-bottom: 20px; text-align: center; }
-    section p { font-size: 1rem; line-height: 1.8; text-align: center; max-width: 800px; margin: 0 auto 20px; }
-
-    .mission-image{ width: 600px; max-height: 150px; object-fit: cover; display: block; margin: 25px auto; border-radius: 12px; }
-    .highlight-image { width: 750px; max-height: 300px; object-fit: cover; display: block; margin: 25px auto; border-radius: 12px; }
-    .mission-quote { font-size: 18px; color: #6a1b9a; font-weight: bold; text-align: center; margin-top: 30px; }
-
-    .big-button { display: inline-block; background-color: #007c91; color: #fff; padding: 14px 32px; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 50px; margin-top: 25px; transition: background-color 0.3s, transform 0.2s; text-decoration: none; cursor: pointer; }
-    .big-button:hover { background-color: #005f6a; transform: translateY(-3px); }
-
-    .subjects { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; }
-    .subject { text-align: center; flex: 1 1 30%; background-color: #f9f9f9; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
-    .subject:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-    .subject img { width: 100%; max-width: 200px; max-height: 140px; object-fit: cover; margin-bottom: 15px; border-radius: 10px; }
-    .subject p { font-weight: bold; font-size: 1.05rem; }
-
-    .coming-soon { margin-top: 40px; text-align: center; font-size: 160%; font-weight: bold; color: #051214; }
-    footer { background: #0d1b2a; color: #fff; text-align: center; padding: 20px 0; }
-
-    @media (max-width: 768px){
-      .subjects { flex-direction: column; align-items: center; }
-      nav ul li { display: block; margin: 10px 0; }
-      .mission-image, .highlight-image { width: 90%; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Auth UI */
-    #authContainer { position: absolute; right: 18px; top: 18px; display:flex; gap:10px; align-items:center; z-index:2000; }
-    .auth-btn { background: #ffcc70; color: #0d1b2a; padding: 10px 14px; border-radius: 30px; border: none; font-weight: 700; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
-    .auth-user { color:#fff; background:transparent; font-weight:700; padding:6px 10px; border-radius:20px; border:1px solid rgba(255,255,255,0.12); }
-    .auth-logout { background:#e5533d; color:#fff; padding:8px 10px; border-radius:12px; border:none; font-weight:700; cursor:pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f9fb;
+      color: #333;
+    }
 
-    /* Disabled Styles */
-    .disabled { opacity: 0.55; pointer-events: none; cursor: not-allowed !important; }
-    .big-button[aria-disabled="true"] { opacity: 0.55; pointer-events: none; cursor: not-allowed; }
-    .subject.disabled { opacity: 0.6; pointer-events: none; cursor: not-allowed; }
+    header {
+      background: #0d1b2a;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      animation: fadeInDown 1s ease;
+    }
 
-    /* Toast */
-    #myf_toast { position: fixed; right: 18px; bottom: 18px; background:#111; color:#fff; padding:10px 14px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.2); z-index:1600; opacity:0; transition: opacity .22s ease; }
-    #myf_toast.show { opacity: 1; }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+      animation: bounce 0.7s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #ffcc70;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 10px 0 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: #80deea;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffd166;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      color: #007c91;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    section p {
+      font-size: 1rem;
+      line-height: 1.8;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .mission-image, .highlight-image {
+      width: 65%;
+      max-height: 350px;
+      object-fit: cover;
+      display: block;
+      margin: 25px auto;
+      border-radius: 12px;
+    }
+
+    .mission-quote {
+      font-size: 18px;
+      color: #6a1b9a;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .big-button {
+      display: inline-block;
+      background-color: #007c91;
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      margin-top: 25px;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .big-button:hover {
+      background-color: #005f6a;
+      transform: translateY(-3px);
+    }
+
+    .subjects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .subject {
+      text-align: center;
+      flex: 1 1 30%;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .subject:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .subject img {
+      width: 100%;
+      max-width: 200px;
+      max-height: 140px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+
+    .subject p {
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+
+    .coming-soon {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 1.9 rem;
+      font-weight: bold;
+      color: #051214;
+    }
+
+
+    footer {
+      background: #0d1b2a;  
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .subjects {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        display: block;
+        margin: 10px 0;
+      }
+
+      .mission-image, .highlight-image {
+        width: 90%;
+      }
+    }
   </style>
 </head>
-
 <body>
+
   <header>
-    <img src="logo.png" alt="DYF Logo" class="logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="DYF Logo" class="logo">
     <h1>MYF - Make You Better</h1>
-
-    <div id="authContainer" aria-live="polite">
-      <button id="googleSignBtn_static" class="auth-btn">Sign in with Google</button>
-    </div>
-
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#streams">Streams</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="CONTACTPAGEFORALL.html">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -95,46 +230,61 @@
   <main>
     <section id="mission">
       <h2>Our Mission</h2>
-      <img src="vision1.png" alt="Students learning" class="mission-image">
+      <img class="mission-image" src="https://realgreglee.com/wp-content/uploads/2011/11/our-mission-button.gif" alt="Students learning">
       <p>Empowering Students for a Brighter Future</p>
-      <p>At MYF - Make You Better, we guide students toward a successful future through mentorship, roadmaps, and stress-free career decisions.</p>
+      <p>At MYF - Make You Better, we guide students toward a successful future through mentorship, roadmaps, and stress-free career decisions. Whether in science, arts, or commerce, we provide structured plans and inspiring support for every student's journey.</p>
       <p>Let us help students unlock their potential with clarity, motivation, and the right direction.</p>
-      <img src="confuse.png" alt="Bright future" class="highlight-image">
-      <div class="mission-quote">“At MYF, we replace confusion with confidence and build futures where every student shines.”</div>
+      <img class="highlight-image" src="https://blog.adobe.com/en/publish/2022/09/08/media_199508d79870be49377a327889db41dfa867c18ba.jpeg?width=2000&format=webply&optimize=medium" alt="Bright future">
+      <div class="mission-quote">
+        “At DYF, we replace confusion with confidence and build futures where every student shines.”
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+  <img src="https://cdn-icons-png.flaticon.com/512/3456/3456426.png" alt="Why DYF" style="width: 60px; height: auto; margin-bottom: 15px;">
+  <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto; color: #444; font-weight: 500;">
+    Why did we create DYF? Because we know students often feel lost after 10th grade. DYF is here to light the path.
+  </p>
+  <p style="font-size: 1.1rem; max-width: 800px; margin: 15px auto; color: #444;">
+    Our website helps you compare <strong>government and private college fees</strong>, explore <strong>expected salaries</strong> in each stream, and even gives you a <strong>salary projection</strong> based on your chosen path.
+  </p>
+  <p style="font-size: 1.1rem; max-width: 800px; margin: 15px auto; color: #444;">
+    Your decision is yours — but we help you make it smarter. MYF helps you shine brighter, with clarity on your future.
+  </p>
+</div>
+
     </section>
 
     <section id="job-options">
       <h2>Options After 10th Class</h2>
       <p>Explore career opportunities after 10th:</p>
       <div style="text-align:center;">
-        <button class="big-button" onclick="requireLogin(null,'after10th.html')">Explore After 10th Options</button>
-      </div>
-    </section>
-
-    <section id="tools">
-      <h2>Try Our Tools</h2>
-      <p>Interactive features to help you plan your future:</p>
-      <div style="text-align:center; margin-top: 20px;">
-        <button class="big-button" aria-disabled="true" title="Coming soon">💰 Budget Calculator</button>
-        <button class="big-button" style="margin-left:15px;" aria-disabled="true" title="Coming soon">🤖 AI Coming Soon</button>
+        <a href="10 class page.html" class="big-button">Explore After 10th Options</a>
       </div>
     </section>
 
     <section id="streams">
+
       <div class="coming-soon"><strong>✨ All these features are coming soon!</strong></div>
-      <br>
+
+      <br> 
+      
       <h2>Available Streams</h2>
       <div class="subjects">
-        <div class="subject" onclick="requireLogin(null,'science-stream.html')" role="button">
-          <img src="question mark.avif" alt="Science Stream">
+        <div class="subject">
+          <a href="science page.html">
+            <img src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\PHOTO USED IN HOME PAGE\download (1).jpeg" alt="Science Stream">
+          </a>
           <p>Science</p>
         </div>
-        <div class="subject disabled" role="button" aria-disabled="true" title="Available soon">
-          <img src="question mark.avif" alt="Arts Stream">
+        <div class="subject">
+          <a href="arts.html">
+            <img src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\PHOTO USED IN HOME PAGE\download.jpeg" alt="Arts Stream">
+          </a>
           <p>Arts</p>
         </div>
-        <div class="subject disabled" role="button" aria-disabled="true" title="Available soon">
-          <img src="question mark.avif" alt="Commerce Stream">
+        <div class="subject">
+          <a href="commerce.html">
+            <img src="D:\MAKE YOUR FUTURE BETTER WEBSTIE\PHOTO USED IN HOME PAGE\download.png" alt="Commerce Stream">
+          </a>
           <p>Commerce</p>
         </div>
       </div>
@@ -144,113 +294,6 @@
   <footer>
     <p>&copy; 2025 DYF - Make You Better. All rights reserved.</p>
   </footer>
-
-  <div id="myf_toast" role="status" aria-live="polite"></div>
-
-  <script type="module">
-    (async () => {
-      const authContainer = document.getElementById('authContainer');
-      const toastEl = document.getElementById('myf_toast') || (() => { const t = document.createElement('div'); t.id='myf_toast'; document.body.appendChild(t); return t; })();
-
-      function showToast(msg, ms=2600){
-        if(!toastEl) return alert(msg);
-        toastEl.textContent = msg;
-        toastEl.classList.add('show');
-        clearTimeout(toastEl._t);
-        toastEl._t = setTimeout(()=>{ toastEl.classList.remove('show'); }, ms);
-      }
-
-      function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
-
-      let auth=null, fbAuthModule=null, firebaseOk=false;
-
-      async function loadFirebaseAuth(){
-        if(firebaseOk) return true;
-        try {
-          const cfg = await import('./firebase-config.js');
-          if(cfg && cfg.auth){
-            auth = cfg.auth;
-            fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
-            firebaseOk = true; return true;
-          }
-          if(cfg && (cfg.firebaseConfig || (cfg.default && cfg.default.firebaseConfig))){
-            const firebaseConfig = cfg.firebaseConfig || (cfg.default && cfg.default.firebaseConfig);
-            const appModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js');
-            fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
-            const app = appModule.initializeApp(firebaseConfig);
-            auth = fbAuthModule.getAuth(app);
-            firebaseOk = true; return true;
-          }
-          if(window.firebase && window.firebase.auth){
-            auth = window.firebase.auth();
-            fbAuthModule = await import('https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js');
-            firebaseOk = true; return true;
-          }
-          console.error('Firebase config not found or invalid.');
-          return false;
-        } catch(err){ console.error('Auth load failed', err); return false; }
-      }
-
-      function renderHeader(user){
-        if(!authContainer) return;
-        if(user){
-          const display = (user.displayName && user.displayName.trim())?user.displayName:(user.email||'User');
-          authContainer.innerHTML = `<div class="auth-user">👋 ${escapeHtml(display)}</div><button id="logoutBtn" class="auth-logout">Logout</button>`;
-          const btn=document.getElementById('logoutBtn');
-          if(btn) btn.addEventListener('click', doLogout);
-          const userEl=document.querySelector('.auth-user');
-          if(userEl) userEl.addEventListener('click', ()=>{showToast('Signed in as '+display);});
-        } else {
-          authContainer.innerHTML=`<button id="signinBtn" class="auth-btn">Sign in with Google</button>`;
-          const signinBtn=document.getElementById('signinBtn');
-          if(signinBtn) signinBtn.addEventListener('click', trySignIn);
-        }
-      }
-
-      async function trySignIn(){
-        const ok=await loadFirebaseAuth();
-        if(!ok){ showToast('Sign-in unavailable'); return; }
-        try{ await fbAuthModule.signInWithPopup(auth, new fbAuthModule.GoogleAuthProvider()); } 
-        catch(err){ showToast('Sign-in failed'); console.warn(err); }
-      }
-
-      async function requireLogin(message,target){
-        const ok=await loadFirebaseAuth(); if(!ok){ showToast('Sign-in unavailable'); return; }
-        const user=auth.currentUser;
-        if(user){
-          if(user.emailVerified===false){ showToast('Verify your email first'); return; }
-          if(target){ window.location.href=target; return; }
-          if(message) alert(message);
-          return;
-        }
-        showToast(message||'Please sign in to continue');
-        await trySignIn();
-      }
-
-      async function doLogout(){
-        if(!firebaseOk||!auth){ showToast('Not signed in'); renderHeader(null); return; }
-        try{ await fbAuthModule.signOut(auth); showToast('Logged out'); renderHeader(null); }
-        catch(e){ showToast('Logout failed'); console.warn(e); }
-      }
-
-      const ok=await loadFirebaseAuth();
-      if(!ok){ authContainer.innerHTML=`<button id="signinFallback" class="auth-btn">Sign in with Google</button>`; }
-      else{
-        try{
-          if(fbAuthModule && typeof fbAuthModule.onAuthStateChanged==='function'){
-            fbAuthModule.onAuthStateChanged(auth,user=>{renderHeader(user);});
-          } else if(auth && typeof auth.onAuthStateChanged==='function'){
-            auth.onAuthStateChanged(user=>{renderHeader(user);});
-          } else { renderHeader(null); }
-        } catch(e){ console.warn(e); renderHeader(null); }
-      }
-
-      window.trySignIn=trySignIn;
-      window.requireLogin=requireLogin;
-      window.doLogout=doLogout;
-
-    })();
-  </script>
 
 </body>
 </html>
