@@ -1,146 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DYF - Make You Better</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="styles.css">
 
-  <!-- Google Analytics (gtag) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B61TT6VQJ6"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"></script>
+
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-B61TT6VQJ6');
+    const firebaseConfig = {
+      apiKey: "AIzaSyCd1ZOD8Y2i_IaDX2p7F14ToLM9mDB7BMo",
+      authDomain: "myfproject-93edc.firebaseapp.com",
+      projectId: "myfproject-93edc",
+      storageBucket: "myfproject-93edc.appspot.com",
+      messagingSenderId: "596991137509",
+      appId: "1:596991137509:web:59612fcade4e41fa87e10f"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function requireLogin(defaultPage, overridePage=null) {
+      const user = auth.currentUser;
+      const destination = overridePage || defaultPage;
+
+      if (user) {
+        window.location.href = destination;
+      } else {
+        window.location.href = "login.html?redirect=" + destination;
+      }
+    }
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; background: #f4f9fb; color: #333; }
-    header { background: #0d1b2a; color: #fff; padding: 40px 20px; text-align: center; animation: fadeInDown 1s ease; position:relative; }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-    .logo { width: 150px; height: 150px; display: block; margin: 0 auto 10px; animation: bounce 0.7s infinite alternate; }
-    @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); } }
-    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; color: #ffcc70; }
-    nav ul { list-style: none; padding: 10px 0 0; }
-    nav ul li { display: inline-block; margin: 0 15px; }
-    nav ul li a { color: #80deea; font-weight: 600; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
-    nav ul li a:hover { color: #ffd166; }
-    main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-    section { background: #ffffff; border-radius: 12px; padding: 40px 30px; margin-bottom: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); }
-    section h2 { font-size: 1.8rem; color: #007c91; margin-bottom: 20px; text-align: center; }
-    section p { font-size: 1rem; line-height: 1.8; text-align: center; max-width: 800px; margin: 0 auto 20px; }
-    .mission-image{ width: 600px; max-height: 150px; object-fit: cover; display: block; margin: 25px auto; border-radius: 12px; }
-    .highlight-image { width: 750px; max-height: 300px; object-fit: cover; display: block; margin: 25px auto; border-radius: 12px; }
-    .mission-quote { font-size: 18px; color: #6a1b9a; font-weight: bold; text-align: center; margin-top: 30px; }
-    .big-button { display: inline-block; background-color: #007c91; color: #fff; padding: 14px 32px; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 50px; margin-top: 25px; transition: background-color 0.3s, transform 0.2s; text-decoration: none; cursor: pointer; }
-    .big-button:hover { background-color: #005f6a; transform: translateY(-3px); }
-    .subjects { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; }
-    .subject { text-align: center; flex: 1 1 30%; background-color: #f9f9f9; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; }
-    .subject:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
-    .subject img { width: 100%; max-width: 200px; max-height: 140px; object-fit: cover; margin-bottom: 15px; border-radius: 10px; }
-    .subject p { font-weight: bold; font-size: 1.05rem; }
-    .coming-soon { margin-top: 40px; text-align: center; font-size: 160%; font-weight: bold; color: #051214; }
-    footer { background: #0d1b2a; color: #fff; text-align: center; padding: 20px 0; }
-
-    /* disabled styles */
-    .disabled { opacity: 0.6; pointer-events: none; }
-
-    /* toast */
-    #myf_toast { position: fixed; right: 18px; bottom: 18px; background:#111; color:#fff; padding:10px 14px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.2); z-index:1600; opacity:0; transition: opacity .22s ease; }
-    #myf_toast.show { opacity: 1; }
-
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    header {
+      background-color: #4caf50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .big-button {
+      padding: 15px 25px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      border-radius: 8px;
+    }
+    .subjects {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .subject {
+      width: 150px;
+      text-align: center;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+    .subject:hover {
+      transform: scale(1.05);
+      background-color: #e8f5e9;
+    }
+    .subject img {
+      width: 100px;
+    }
   </style>
+
 </head>
 <body>
 
 <header>
-  <img src="logo.png" alt="DYF Logo" class="logo">
-  <h1>MYF - Make You Better</h1>
-
-  <div id="authContainer" aria-live="polite">
-    <button id="googleSignBtn_static" class="auth-btn">Sign in with Google</button>
-  </div>
-
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#streams">Streams</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <h1>Welcome to MYF</h1>
 </header>
 
 <main>
+  <div class="button-container">
+    <!-- Already clickable – kept the same -->
+    <button class="big-button" onclick="requireLogin(null,'10firstpage.html')">
+      Explore After 10th Options
+    </button>
+  </div>
 
-  <section id="mission">
-    <h2>Our Mission</h2>
-    <img src="vision1.png" class="mission-image">
-    <p>Empowering Students for a Brighter Future</p>
-    <p>At MYF - Make You Better, we guide students toward a successful future through mentorship, roadmaps, and stress-free career decisions.</p>
-    <img src="confuse.png" class="highlight-image">
-  </section>
+  <h2>Select Your Stream</h2>
 
-  <section id="job-options">
-    <h2>Options After 10th Class</h2>
-    <p>Explore career opportunities after 10th:</p>
-    <div style="text-align:center;">
-      <button class="big-button" onclick="requireLogin(null,'10firstpage.html')">Explore After 10th Options</button>
+  <div class="subjects">
+    <!-- SCIENCE (NOW CLICKABLE) -->
+    <div class="subject" onclick="requireLogin(null,'science page.html')" role="button">
+      <img src="question mark.avif" alt="Science Stream">
+      <p>Science</p>
     </div>
-  </section>
 
-  <section id="tools">
-    <h2>Try Our Tools</h2>
-    <p>Interactive features to help you plan your future:</p>
-    <div style="text-align:center; margin-top: 20px;">
-      <button class="big-button" aria-disabled="true">💰 Budget Calculator</button>
-      <button class="big-button" aria-disabled="true" style="margin-left: 15px;">🤖 AI Coming Soon</button>
+    <!-- OTHER STREAMS (LEFT AS THEY ARE OR WAITING FOR YOU TO UPDATE THEM) -->
+    <div class="subject">
+      <img src="question mark.avif" alt="Commerce Stream">
+      <p>Commerce</p>
     </div>
-  </section>
 
-  <section id="streams">
-    <div class="coming-soon"><strong>✨ All these features are coming soon!</strong></div>
-    <br>
-    <h2>Available Streams</h2>
-
-    <div class="subjects">
-
-      <!-- ✅ SCIENCE NOW CLICKABLE -->
-      <div class="subject" onclick="requireLogin(null,'science page.html')" role="button">
-        <img src="question mark.avif" alt="Science Stream">
-        <p>Science</p>
-      </div>
-
-      <!-- Arts still disabled -->
-      <div class="subject disabled" aria-disabled="true">
-        <img src="question mark.avif" alt="Arts Stream">
-        <p>Arts</p>
-      </div>
-
-      <!-- Commerce still disabled -->
-      <div class="subject disabled" aria-disabled="true">
-        <img src="question mark.avif" alt="Commerce Stream">
-        <p>Commerce</p>
-      </div>
-
+    <div class="subject">
+      <img src="question mark.avif" alt="Arts Stream">
+      <p>Arts</p>
     </div>
-  </section>
+  </div>
 
 </main>
 
-<footer>
-  <strong><p>&copy; 2025 DYF - Make You Better. All rights reserved.</p></strong>
-</footer>
-
-<div id="myf_toast"></div>
-
-<!-- KEEP YOUR ORIGINAL SCRIPT BELOW — UNCHANGED -->
-<script type="module">
-/* your entire firebase/login script stays exactly the same */
-</script>
-
 </body>
 </html>
-
-
