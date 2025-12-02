@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Stream - Student Resource Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f9fb;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background: #0d1b2a;
+            color: #fff;
+            width: 100%;
+            padding: 40px 20px;
+            text-align: center;
+            animation: fadeInDown 1s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #ffcc70;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+            animation: bounce 0.7s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 10px 0 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #80deea;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffd166;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            color: #007c91;
+            margin-bottom: 20px;
+        }
+
+        .stream {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .subject {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .subject img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .stream {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .stream:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .stream-link {
+            color: #007c91;
+            text-decoration: none;
+        }
+
+        .stream-link:hover {
+            color: #005f6a;
+        }
+
+        footer {
+            background: #0d1b2a;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Student Resource Hub Logo" class="logo">
+        <h1>Science Stream - Student Resource Hub</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="#streams">Streams</a></li>
+                <li><a href="CONTACTPAGEFORALL.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="streams">
+            <h2>Available Streams in Science</h2>
+
+            <div class="stream" onclick="window.location.href='pcmpage.html'">
+                <h3><a href="pcmpage.html" class="stream-link">Physics, Chemistry, Mathematics (PCM)</a></h3>
+                <div class="subjects-container">
+                    <div class="subject">
+                        <a href="pcmpage.html">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/99679f85-b427-4b86-813f-48aa9d6591c1.png" alt="Physics, Chemistry, Mathematics">
+                        </a>
+                        <p>PCM</p>
+                    </div>
+                </div>
+                <p><strong>Focus:</strong> Engineering and Technical Fields</p>
+                <p><strong>Career Paths:</strong> Engineering, Architecture, Computer Science, Information Technology, etc.</p>
+            </div>
+
+            <div class="stream" onclick="window.location.href='pcbpage.html'">
+                <h3><a href="pcbpage.html" class="stream-link">Physics, Chemistry, Biology (PCB)</a></h3>
+                <div class="subjects-container">
+                    <div class="subject">
+                        <a href="pcbpage.html">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7907aac0-9779-4a38-8278-56b90c1318a6.png" alt="Physics, Chemistry, Biology">
+                        </a>
+                        <p>PCB: Physics, Chemistry, and Biology</p>
+                    </div>
+                </div>
+                <p><strong>Focus:</strong> Medical and Health Sciences</p>
+                <p><strong>Career Paths:</strong> Medicine, Pharmacy, Nursing, Biotechnology, etc.</p>
+            </div>
+
+            <div class="stream">
+                <h3 style="color: #007c91;">Physics, Chemistry, Mathematics, Biology (PCMB)</h3>
+                <div class="subject">
+                    <a href="pcmbpage.html">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d4e448bb-6db7-4da3-a160-c1baf8ebd703.png" alt="All Science Subjects">
+                    </a>
+                    <p>PCMB</p>
+                </div>
+                <p><strong>Focus:</strong> Comprehensive Science Education</p>
+                <p><strong>Career Paths:</strong> Research, Environmental Science, Health Sciences, etc.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need further information, feel free to reach out!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Student Resource Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>

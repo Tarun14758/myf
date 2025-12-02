@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career Opportunities - PCB Stream</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* Reusing your existing style */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f9fb;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background: #0d1b2a;
+      color: #fff;
+      width: 100%;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #ffcc70;
+    }
+    .logo {
+      width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+      animation: bounce 0.7s infinite alternate;
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: #80deea;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #ffd166;
+    }
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h2.section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #007c91;
+      margin-bottom: 30px;
+    }
+    .career-group-title {
+      font-size: 1.8rem;
+      color: #007c91;
+      margin: 40px 0 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .career-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .career-card {
+      background: linear-gradient(145deg, #ffffff, #e6f7ff);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      border: 2px solid #b2ebf2;
+      text-align: center;
+    }
+    .career-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(145deg, #e0f7fa, #ffffff);
+    }
+    .career-card h3 {
+      color: #0d1b2a;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px #e0f2f1;
+    }
+
+    /* Tools Section */
+    .tool-section {
+      margin-top: 80px;
+      text-align: center;
+    }
+    .tool-section h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    .tool-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .tool-box {
+      background: linear-gradient(145deg, #ffffff, #d0f0f7);
+      border: 2px solid #4dd0e1;
+      border-radius: 20px;
+      padding: 30px 40px;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #0d1b2a;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: 0.3s ease-in-out;
+      cursor: pointer;
+      width: 300px;
+      text-decoration: none;
+    }
+    .tool-box:hover {
+      transform: scale(1.05);
+      background: linear-gradient(145deg, #e0f7fa, #ffffff);
+      color: #007c91;
+    }
+    footer {
+      background: #0d1b2a;
+      color: #fff;
+      width: 100%;
+      padding: 30px 20px 15px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .footer-contact h2 {
+      font-size: 1.4rem;
+      color: #ffcc70;
+      margin-bottom: 8px;
+    }
+    .footer-contact p {
+      font-size: 1rem;
+      color: #cce7ff;
+      margin-bottom: 20px;
+    }
+    .footer-bottom {
+      font-size: 0.9rem;
+      color: #cccccc;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li {
+        margin: 10px 0;
+      }
+      .tool-boxes {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Logo" class="logo" />
+    <h1>Career Opportunities - PCB</h1>
+    <nav>
+      <ul>
+        <li><a href="homepage.html">Home</a></li>
+        <li><a href="pcbpage.html">Back to PCB</a></li>
+        <li><a href="CONTACTPAGEFORALL.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section-title">Explore Exciting Careers After PCB 🎓🌿</h2>
+
+    <!-- Career Categories -->
+    <div class="career-group-title">Medical & Health</div>
+    <div class="career-grid">
+      <div class="career-card"><h3>Doctor 👨‍⚕️</h3></div>
+      <div class="career-card"><h3>Dentist 🦷</h3></div>
+      <div class="career-card"><h3>Veterinarian 🐾</h3></div>
+      <div class="career-card"><h3>Physiotherapist 🏃‍♂️</h3></div>
+      <div class="career-card"><h3>Pharmacist 💊</h3></div>
+      <div class="career-card"><h3>Nurse 🩺</h3></div>
+    </div>
+
+    <div class="career-group-title">Research & Science</div>
+    <div class="career-grid">
+      <div class="career-card"><h3>Biochemist 🔬</h3></div>
+      <div class="career-card"><h3>Microbiologist 🧫</h3></div>
+      <div class="career-card"><h3>Geneticist 🧬</h3></div>
+      <div class="career-card"><h3>Botanist 🌱</h3></div>
+      <div class="career-card"><h3>Zoologist 🐒</h3></div>
+      <div class="career-card"><h3>Lab Technician 🧪</h3></div>
+    </div>
+
+    <div class="career-group-title">Allied Health</div>
+    <div class="career-grid">
+      <div class="career-card"><h3>Radiologist 🩻</h3></div>
+      <div class="career-card"><h3>Optometrist 👁️</h3></div>
+      <div class="career-card"><h3>Speech Therapist 🗣️</h3></div>
+      <div class="career-card"><h3>Occupational Therapist 🤲</h3></div>
+    </div>
+
+    <div class="career-group-title">Environmental & Agriculture</div>
+    <div class="career-grid">
+      <div class="career-card"><h3>Environmental Scientist 🌍</h3></div>
+      <div class="career-card"><h3>Food Technologist 🍎</h3></div>
+      <div class="career-card"><h3>Agricultural Scientist 🌾</h3></div>
+      <div class="career-card"><h3>Horticulturist 🌸</h3></div>
+    </div>
+
+    <!-- TOOL SECTION -->
+    <section class="tool-section">
+      <h2>Click Below To Find 🎓 College & Salary 💰</h2>
+      <div class="tool-boxes">
+        <a href="pcbcollege.html" class="tool-box">🎓 FIND BEST COLLEGE</a>
+        <a href="salaryforpcb.html" class="tool-box">💰 FIND SALARY FOR 20 YEARS</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-contact">
+      <h2>Contact Us</h2>
+      <p>If you have any queries, feel free to reach out to us.</p>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2023 Student Resource Hub. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PCM Stream - Student Resource Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f9fb;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: #0d1b2a;
+      color: #fff;
+      width: 100%;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #ffcc70;
+    }
+
+    .logo {
+      width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+      animation: bounce 0.7s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: #80deea;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffd166;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      color: #007c91;
+      margin-bottom: 20px;
+    }
+
+    section h3 {
+      font-size: 1.4rem;
+      color: #0d1b2a;
+      margin-top: 20px;
+    }
+
+    ul {
+      text-align: left;
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    /* New animated box for Career Opportunity */
+    .career-card {
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      padding: 40px 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 900px;
+      margin: 30px auto;
+      cursor: pointer;
+    }
+
+    .career-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .career-card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    footer {
+      background: #0d1b2a;
+      color: #fff;
+      width: 100%;
+      padding: 30px 20px 15px;
+      text-align: center;
+    }
+
+    .footer-contact h2 {
+      font-size: 1.4rem;
+      color: #ffcc70;
+      margin-bottom: 8px;
+    }
+
+    .footer-contact p {
+      font-size: 1rem;
+      color: #cce7ff;
+      margin-bottom: 20px;
+    }
+
+    .footer-bottom {
+      font-size: 0.9rem;
+      color: #cccccc;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Student Resource Hub Logo" class="logo" />
+    <h1>PCM Stream - Student Resource Hub</h1>
+    <nav>
+      <ul>
+        <li><a href="homepage.html">Home</a></li>
+        <li><a href="science page.html">Back to Science</a></li>
+        <li><a href="CONTACTPAGEFORALL.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>About PCM: Physics, Chemistry, Mathematics</h2>
+      <p>The PCM stream is ideal for students who are inclined towards technical and analytical careers. This combination provides a strong foundation for engineering, technology, and scientific research.</p>
+    </section>
+
+    <section>
+      <h2>Why Choose PCM?</h2>
+      <p>Choosing PCM opens up a vast number of career paths in both traditional and emerging fields such as robotics, artificial intelligence, and space science. It develops critical thinking and problem-solving abilities.</p>
+    </section>
+
+    <section>
+      <h2>Subjects in PCM Stream</h2>
+      <img src="https://bcdn.mindler.com/bloglive/wp-content/uploads/2019/06/13154448/science-stream-subjects-after-10th-1024x512.png" alt="PCM Subjects Banner" style="width:100%; max-width:800px; border-radius:12px; margin: 20px auto; display: block; box-shadow: 0 8px 20px rgba(0,0,0,0.1);" />
+
+      <p style="margin-top: 20px;">
+        The PCM (Physics, Chemistry, Mathematics) stream in 11th and 12th grade typically involves <strong>5 main subjects</strong>, thoughtfully structured to develop analytical thinking and prepare students for competitive careers in science and engineering.
+      </p>
+
+      <div style="text-align: left; max-width: 900px; margin: 25px auto; line-height: 1.8;">
+        <h3>✨ Core Subjects (3):</h3>
+        <ul>
+          <li><strong>Physics:</strong> Mechanics, Thermodynamics, Electromagnetism, Optics, Modern Physics</li>
+          <li><strong>Chemistry:</strong> Organic, Inorganic, Physical Chemistry, Electrochemistry, Coordination Compounds</li>
+          <li><strong>Mathematics:</strong> Algebra, Calculus, Trigonometry, Probability, Coordinate Geometry</li>
+        </ul>
+
+        <h3>📝 Compulsory Language Subject (1):</h3>
+        <ul>
+          <li><strong>English:</strong> Communication, comprehension, writing, and analysis</li>
+        </ul>
+
+        <h3>🎯 Elective/Optional Subject (1):</h3>
+        <p>Students can choose one optional subject based on their interests and future goals. Popular options include:</p>
+        <ul>
+          <li><strong>Computer Science</strong> – Programming, Logic Building, Data Structures</li>
+          <li><strong>Biology</strong> – Genetics, Ecology, Human Physiology</li>
+          <li><strong>Economics</strong> – Micro & Macro Economics, Statistics</li>
+          <li><strong>Physical Education</strong> – Fitness, Sports Psychology, Physiology</li>
+          <li><strong>Psychology / Fine Arts / IP</strong> – Based on school availability</li>
+        </ul>
+      </div>
+
+      <p style="margin-top: 25px;">
+        💡 <strong>Note:</strong> These subjects follow CBSE, ICSE, and most state board guidelines in India. Optional subjects may vary across schools.
+      </p>
+
+      <div style="margin-top: 30px;">
+        <h3>🚀 Importance of PCM</h3>
+        <p>
+          The PCM combination lays the foundation for exciting careers in <strong>Engineering, Technology, Architecture, Data Science, Defense Services</strong>, and many more. Choosing the right optional subject can enhance your skills and sharpen your focus toward competitive exams like <strong>JEE, NDA, CUET</strong>, etc.
+        </p>
+      </div>
+    </section>
+
+    <!-- Career Opportunity Section with Bounce Effect -->
+    <section class="career-card">
+      <a href="career page pcm.html">
+        <h2>Click here to find career opportunity!</h2>
+        <p><strong>Engineering:</strong> Mechanical, Civil, Computer, Electrical, etc.</p>
+        <p><strong>Architecture, Design, Aviation, Data Science, and more.</strong></p>
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-contact">
+      <h2>Contact Us</h2>
+      <p>If you have any queries, feel free to reach out to us.</p>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2023 Student Resource Hub. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
